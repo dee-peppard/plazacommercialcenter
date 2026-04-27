@@ -792,24 +792,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-top: 14px;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 500;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: rgba(246,241,233,0.5);
-            background: none;
-            border: 1px solid rgba(246,241,233,0.14);
-            padding: 13px 20px;
+            color: var(--terra-light);
+            background: rgba(184,98,69,0.08);
+            border: 1px solid rgba(184,98,69,0.45);
+            padding: 16px 20px;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s;
             font-family: 'DM Sans', sans-serif;
         }
         .gallery-btn:hover {
-            border-color: rgba(246,241,233,0.32);
-            color: rgba(246,241,233,0.82);
+            background: rgba(184,98,69,0.18);
+            border-color: var(--terracotta);
+            color: #fff;
         }
 
         .gallery-modal {
@@ -1123,7 +1124,7 @@
 
         <!-- UNIT 218 -->
         <div class="avail-card">
-            <div class="avail-badge">Available Now</div>
+            <div class="avail-badge">Available with 30 Days Notice</div>
             <div class="avail-unit-label">Unit 218 &nbsp;·&nbsp; East Cota Street</div>
             <div class="avail-sf">1,894</div>
             <div class="avail-sf-sub">Square Feet &nbsp;<span style="font-size:10px; color:var(--sand); letter-spacing:0.1em;">(+500sf outdoor opt.)</span></div>
@@ -1201,7 +1202,7 @@
             <div class="unit-card unit-card-available">
                 <div class="u-num">218</div>
                 <div><span class="u-sf">1,894</span><span class="u-sf-small">sf</span></div>
-                <span class="badge badge-available">Available</span>
+                <span class="badge badge-soon">30 Days Notice</span>
             </div>
             <div class="unit-card unit-card-available" style="border-top-color:var(--sand);">
                 <div class="u-num">220</div>
@@ -1384,17 +1385,17 @@
 const UNITS = {
     '210': {
         name: 'Unit 210  ·  East Cota Street',
-        photos: ['210-interior-1.jpg','210-interior-2.jpg','210-interior-3.jpg','210-interior-4.jpg','210-interior-5.jpg','plazacommercial-2.jpg'],
+        photos: ['210-interior-1.jpg','210-interior-2.jpg','210-interior-3.jpg','210-interior-4.jpg','210-interior-5.jpg','plazacommercial-2.jpg','210ECotaFloorPlan.png'],
         floorplan: '210ECotaFloorPlan.png'
     },
     '218': {
         name: 'Unit 218  ·  East Cota Street',
-        photos: ['218ECota-interior-1.jpg','218ECota-interior-2.jpg','218-220-BathroomFinish.jpg'],
+        photos: ['218ECota-interior-1.jpg','218ECota-interior-2.jpg','218-220-BathroomFinish.jpg','218-220ECotaFloorplan.jpg'],
         floorplan: '218-220ECotaFloorplan.jpg'
     },
     '220': {
         name: 'Unit 220  ·  East Cota Street',
-        photos: ['220-interior-1.jpg','220-interior-2.jpg','220-interior-3.jpg','218-220-BathroomFinish.jpg','220-Entrance-A.jpg','220-Entrance-B.jpg'],
+        photos: ['220-interior-1.jpg','220-interior-2.jpg','220-interior-3.jpg','218-220-BathroomFinish.jpg','220-Entrance-A.jpg','220-Entrance-B.jpg','218-220ECotaFloorplan.jpg'],
         floorplan: '218-220ECotaFloorplan.jpg'
     }
 };
