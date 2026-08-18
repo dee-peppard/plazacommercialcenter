@@ -33,10 +33,22 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ─── PROMO BANNER ────────────────────────── */
+        .promo-banner {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 110;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--terracotta); color: #fff; text-decoration: none;
+            padding: 13px 20px; text-align: center;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.01em; line-height: 1.4;
+            transition: background 0.2s;
+        }
+        .promo-banner:hover { background: #a0553a; }
+        .promo-banner .promo-link { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; margin-left: 6px; white-space: nowrap; }
+
         /* ─── NAVIGATION ─────────────────────────── */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 44px; left: 0; right: 0;
             z-index: 100;
             display: flex;
             justify-content: space-between;
@@ -724,7 +736,8 @@
 
         /* ─── RESPONSIVE — ALL MOBILE (≤960px) ──── */
         @media (max-width: 960px) {
-            nav { padding: 18px 24px; }
+            .promo-banner { font-size: 12px; padding: 11px 16px; }
+            nav { padding: 18px 24px; top: 40px; }
             .nav-links { display: none; }
             .nav-hamburger { display: flex; }
 
@@ -949,6 +962,11 @@
     </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════
+     PROMO BANNER
+══════════════════════════════════════════════ -->
+<a href="design-community.html" class="promo-banner">Now home to a growing design community — architects, showrooms &amp; makers.<span class="promo-link">See who's here &rarr;</span></a>
 
 <!-- ══════════════════════════════════════════════
      NAVIGATION
