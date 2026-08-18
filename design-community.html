@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Community — Plaza Commercial Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <style>
+        /* ─────────────────────────────────────────────
+           DESIGN TOKENS — Plaza Commercial Center
+           (matches index.html — Midcentury Modern · Santa Barbara)
+        ───────────────────────────────────────────── */
+        :root {
+            --cream:        #F6F1E9;
+            --cream-dark:   #EDE8DE;
+            --warm-white:   #FAF8F4;
+            --dark:         #252220;
+            --dark-mid:     #3A3530;
+            --terracotta:   #B86245;
+            --terra-light:  #D4896E;
+            --sage:         #6B7B5E;
+            --sand:         #C4B49A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--warm-white);
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAVIGATION ─────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 52px;
+            background: rgba(37, 34, 32, 0.96);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--cream);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--terracotta); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(246,241,233,0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-links a.current { color: var(--terracotta); }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .nav-hamburger span { display: block; width: 26px; height: 1.5px; background: var(--cream); transition: all 0.3s; }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu-close {
+            position: absolute; top: 22px; right: 28px;
+            background: none; border: none; cursor: pointer;
+            color: rgba(246,241,233,0.5); font-size: 28px; line-height: 1; padding: 4px 8px;
+            transition: color 0.2s;
+        }
+        .mobile-menu-close:hover { color: var(--cream); }
+        .mobile-menu a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px; font-weight: 300;
+            color: rgba(246,241,233,0.75);
+            text-decoration: none; letter-spacing: 0.04em;
+            padding: 18px 0; border-bottom: 1px solid rgba(246,241,233,0.08);
+            width: 280px; text-align: center; transition: color 0.2s;
+        }
+        .mobile-menu a:last-of-type { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--terracotta); }
+        .mobile-menu-cta {
+            margin-top: 40px; display: inline-block; background: var(--terracotta);
+            color: #fff !important; font-family: 'DM Sans', sans-serif !important;
+            font-size: 12px !important; font-weight: 500 !important; letter-spacing: 0.18em !important;
+            text-transform: uppercase; padding: 16px 36px !important; border-bottom: none !important; width: auto !important;
+        }
+
+        /* ─── PAGE HERO (photo, shorter than homepage) ──── */
+        .hero {
+            min-height: 80vh;
+            background: url('./210Cota-EntranceRendering.jpg') center 40% / cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px 52px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(to right, rgba(30,25,22,0.86) 0%, rgba(30,25,22,0.6) 55%, rgba(30,25,22,0.38) 100%),
+                radial-gradient(ellipse at 68% 38%, rgba(184,98,69,0.14) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .arch-motif {
+            position: absolute; top: 80px; right: 100px; width: 140px; height: 220px;
+            border: 1px solid rgba(184,98,69,0.22); border-radius: 70px 70px 0 0;
+        }
+        .hero-content { position: relative; max-width: 700px; }
+        .hero-eyebrow {
+            font-size: 10px; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 20px;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(40px, 6vw, 68px);
+            font-weight: 300; line-height: 1.04; color: var(--cream);
+            margin-bottom: 24px; letter-spacing: -0.01em;
+        }
+        .hero-title em { font-style: italic; color: var(--terra-light); }
+        .hero-tagline {
+            font-size: 20px; font-weight: 300; line-height: 1.65;
+            color: rgba(246,241,233,0.88); max-width: 580px; margin-bottom: 40px;
+        }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px; background: var(--terracotta);
+            color: #fff; padding: 15px 30px; text-decoration: none; font-size: 11px; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.2s;
+        }
+        .btn-primary:hover { background: #a0553a; }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(246,241,233,0.28);
+            color: rgba(246,241,233,0.65); padding: 15px 30px; text-decoration: none; font-size: 11px;
+            font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.2s;
+        }
+        .btn-ghost:hover { border-color: rgba(246,241,233,0.55); color: var(--cream); }
+
+        /* ─── THE PALETTE (mood boards take over) ── */
+        .palette { background: var(--dark); padding: 120px 52px; overflow: hidden; }
+        .palette .eyebrow { color: var(--terra-light); }
+        .palette .section-title { color: var(--cream); }
+        .palette .lede { color: rgba(246,241,233,0.6); max-width: 480px; }
+        .palette-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 90px; align-items: center; }
+        .palette-boards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: end; }
+        .board {
+            width: 100%; object-fit: cover; border: 1px solid rgba(246,241,233,0.18);
+            box-shadow: 0 30px 70px rgba(15,12,10,0.55); display: block;
+        }
+        .board-a { height: 520px; transform: rotate(-3deg); align-self: start; }
+        .board-b { height: 460px; transform: rotate(2deg); align-self: end; }
+        .palette-content { position: relative; z-index: 3; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+        .mat-tag {
+            border: 1px solid rgba(246,241,233,0.25); color: rgba(246,241,233,0.8);
+            font-size: 12px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 11px 20px; border-radius: 999px; white-space: nowrap;
+        }
+
+        /* ─── SHARED SECTION STYLES ──────────────── */
+        .section { padding: 100px 52px; }
+        .eyebrow {
+            font-size: 13px; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase;
+            color: var(--terracotta); margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(34px, 4.2vw, 52px); font-weight: 300; line-height: 1.1;
+            color: var(--dark); margin-bottom: 22px;
+        }
+        .rule { width: 44px; height: 1px; background: var(--terracotta); margin-bottom: 34px; }
+        .lede { font-size: 18px; font-weight: 300; line-height: 1.7; color: var(--dark-mid); max-width: 620px; }
+
+        /* ─── WHY TILES (reuses homepage tile system) ── */
+        .why { background: var(--cream-dark); }
+        .tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-top: 44px; }
+        .tile { padding: 30px 24px 26px; display: flex; flex-direction: column; gap: 10px; min-height: 168px; justify-content: flex-end; }
+        .tile-terra { background: var(--terracotta); }
+        .tile-dark  { background: var(--dark); }
+        .tile-mid   { background: var(--dark-mid); }
+        .tile-sage  { background: var(--sage); }
+        .tile-big { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: #fff; line-height: 1; }
+        .tile-label { font-size: 14px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
+        .tile-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+        /* ─── WHO'S ALREADY HERE ─────────────────── */
+        .fields { background: var(--warm-white); }
+        .field-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 44px; }
+        .field-card {
+            background: var(--cream-dark); padding: 32px 26px; text-align: left;
+            border-top: 2px solid var(--terracotta);
+        }
+        .field-card .icon { font-size: 24px; color: var(--terracotta); margin-bottom: 16px; }
+        .field-card h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 21px; margin: 0 0 8px; color: var(--dark); }
+        .field-card p { font-size: 14px; color: var(--dark-mid); margin: 0; line-height: 1.5; font-weight: 300; }
+
+        /* ─── PICTURE IT / GALLERY ────────────────── */
+        .moodboard { background: var(--cream-dark); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 44px; }
+        .gallery-card { background: var(--warm-white); }
+        .gallery-card .photo { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+        .gallery-card .cap { padding: 22px 24px 26px; }
+        .gallery-card .tag {
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--terracotta);
+            font-weight: 500; margin-bottom: 8px; display: block;
+        }
+        .gallery-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 19px; margin: 0 0 8px; color: var(--dark); font-weight: 500; }
+        .gallery-card p { font-size: 14px; color: var(--dark-mid); margin: 0; line-height: 1.55; font-weight: 300; }
+
+        /* ─── REAL TENANTS SPOTLIGHT ──────────────── */
+        .tenants { background: var(--dark); padding-bottom: 48px; }
+        .tenants .eyebrow { color: var(--terra-light); }
+        .tenants .section-title { color: var(--cream); }
+        .tenants .lede { color: rgba(246,241,233,0.55); }
+        .tenant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 44px; }
+        .tenant-card { background: var(--dark-mid); }
+        .tenant-photos { position: relative; overflow: hidden; }
+        .tenant-photos .photo { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: none; }
+        .tenant-photos .photo.active { display: block; }
+        .photo-nav {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+            width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer;
+            background: rgba(15,12,10,0.45); color: #fff; font-size: 15px; line-height: 1;
+            display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+        }
+        .photo-nav:hover { background: rgba(15,12,10,0.75); }
+        .photo-nav.prev { left: 12px; }
+        .photo-nav.next { right: 12px; }
+        .photo-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 6px; }
+        .photo-dots .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.2s; }
+        .photo-dots .dot.active { background: #fff; }
+        .tenant-card .cap { padding: 26px 28px 30px; }
+        .tenant-card .tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--terra-light); font-weight: 500; margin-bottom: 8px; display: block; }
+        .tenant-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin: 0 0 6px; color: var(--cream); font-weight: 500; }
+        .tenant-card p { font-size: 14px; color: rgba(246,241,233,0.55); margin: 0; line-height: 1.55; font-weight: 300; }
+
+        /* ─── AVAILABLE NOW TEASER ────────────────── */
+        .units-teaser { background: var(--dark); padding: 48px 52px 100px; }
+        .units-teaser .eyebrow { color: var(--terracotta); }
+        .units-teaser .section-title { color: var(--cream); }
+        .units-teaser .lede { color: rgba(246,241,233,0.55); }
+        .avail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 44px; }
+        .avail-card { background: var(--dark-mid); padding: 36px 30px 32px; border-top: 3px solid var(--terracotta); }
+        .avail-card.soon { border-top-color: var(--sand); }
+        .avail-badge {
+            display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--terracotta); border: 1px solid rgba(184,98,69,0.5); padding: 6px 12px; margin-bottom: 18px;
+        }
+        .avail-card.soon .avail-badge { color: var(--sand); border-color: rgba(196,180,154,0.5); }
+        .avail-unit-label { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(246,241,233,0.7); margin-bottom: 8px; }
+        .avail-sf { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 4px; }
+        .avail-sf-sub { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand); margin-bottom: 20px; }
+        .avail-use { font-size: 14px; color: rgba(246,241,233,0.6); line-height: 1.55; font-weight: 300; border-top: 1px solid rgba(246,241,233,0.1); padding-top: 18px; }
+        .avail-link {
+            display: block; text-align: center; margin-top: 24px; font-size: 12px; font-weight: 500; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--terracotta); text-decoration: none; border: 1px solid rgba(184,98,69,0.4);
+            padding: 13px; transition: all 0.2s;
+        }
+        .avail-link:hover { background: var(--terracotta); color: #fff; }
+
+        /* ─── FINAL CTA ──────────────────────────── */
+        .final-cta { padding: 96px 52px; text-align: center; }
+        .final-cta .section-title { margin: 0 auto 18px; }
+        .final-cta .lede { margin: 0 auto 36px; }
+        .final-cta .hero-actions { justify-content: center; }
+        .final-cta .btn-primary, .final-cta .btn-ghost { color: unset; }
+        .final-cta .btn-ghost { border-color: rgba(37,34,32,0.25); color: var(--dark); }
+        .final-cta .btn-ghost:hover { border-color: var(--dark); background: var(--dark); color: var(--cream); }
+
+        /* ─── FOOTER ─────────────────────────────── */
+        footer {
+            background: #18160F; padding: 34px 52px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 400; color: rgba(246,241,233,0.38); letter-spacing: 0.05em; }
+        .footer-copy { font-size: 11px; color: rgba(246,241,233,0.22); }
+
+        /* ─── RESPONSIVE ─────────────────────────── */
+        @media (min-width: 641px) and (max-width: 960px) {
+            .tiles, .field-grid, .gallery-grid, .avail-grid, .tenant-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 960px) {
+            nav { padding: 18px 24px; }
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .hero { padding: 96px 24px 64px; min-height: 60vh; }
+            .section, .units-teaser, .final-cta, .palette { padding: 64px 24px; }
+            .arch-motif { display: none; }
+            .palette-grid { grid-template-columns: 1fr; gap: 48px; }
+            .palette-boards { min-height: auto; display: flex; flex-direction: column; gap: 20px; }
+            .board { position: static; width: 100% !important; height: auto !important; transform: none !important; }
+        }
+        @media (max-width: 640px) {
+            .tiles, .field-grid, .gallery-grid, .avail-grid, .tenant-grid { grid-template-columns: 1fr; }
+            .hero-tagline { font-size: 16px; }
+            .section-title { font-size: clamp(28px, 8vw, 40px); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════ -->
+<nav>
+    <a href="index.html#top" class="nav-logo">Plaza <span>Commercial</span> Center</a>
+    <ul class="nav-links">
+        <li><a href="index.html#available">Available</a></li>
+        <li><a href="index.html#units">All Units</a></li>
+        <li><a href="index.html#neighborhood">Neighborhood</a></li>
+        <li><a href="design-community.html" class="current">Design Community</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.remove('open')" aria-label="Close menu">&times;</button>
+    <a href="index.html#available" onclick="document.getElementById('mobileMenu').classList.remove('open')">Available</a>
+    <a href="index.html#units" onclick="document.getElementById('mobileMenu').classList.remove('open')">All Units</a>
+    <a href="index.html#neighborhood" onclick="document.getElementById('mobileMenu').classList.remove('open')">Neighborhood</a>
+    <a href="design-community.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Design Community</a>
+    <a href="index.html#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+    <a href="mailto:management@plazacommercialcenter.com?subject=Tour Request" class="mobile-menu-cta">Schedule a Tour</a>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero" id="top">
+    <div class="arch-motif"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Plaza Commercial Center</p>
+        <h1 class="hero-title">Santa Barbara's <em>Design Community</em></h1>
+        <p class="hero-tagline">Plaza Commercial Center is home to a growing mix of architects, designers, showrooms, and contractors drawn to the same thing: soaring ceilings, arched entrances, and real street presence with private parking. If that sounds like your studio, let's talk.</p>
+        <div class="hero-actions">
+            <a href="mailto:management@plazacommercialcenter.com?subject=Design Community Inquiry" class="btn-primary">Schedule a Tour</a>
+            <a href="#gallery" class="btn-ghost">See the Spaces</a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     THE PALETTE — materials, in the language
+     designers already use to brief their clients
+══════════════════════════════════════════════ -->
+<section class="palette">
+    <div class="palette-grid">
+        <div class="palette-boards">
+            <img class="board board-a" src="./MoodBoardA.jpeg" alt="Materials mood board: brick, reclaimed oak, brass patina, and concrete">
+            <img class="board board-b" src="./MoodBoardB.jpeg" alt="Materials mood board: textures and finishes found throughout Plaza Commercial Center">
+        </div>
+        <div class="palette-content">
+            <p class="eyebrow">The Palette</p>
+            <h2 class="section-title">Brick, concrete, brass patina, exposed wood beamed ceilings</h2>
+            <div class="rule"></div>
+            <p class="lede">Every texture you've pinned on your mood board is already load-bearing here.</p>
+            <div class="tag-row">
+                <span class="mat-tag">Brick</span>
+                <span class="mat-tag">High-Beamed Wood Ceilings</span>
+                <span class="mat-tag">Brass Patina</span>
+                <span class="mat-tag">Arched Entryways</span>
+                <span class="mat-tag">Midcentury Simplicity</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     WHO'S ALREADY HERE
+══════════════════════════════════════════════ -->
+<section class="fields section">
+    <p class="eyebrow">Who's Already Here</p>
+    <h2 class="section-title">Join your design community</h2>
+    <div class="rule"></div>
+
+    <div class="field-grid">
+        <div class="field-card">
+            <div class="icon">◧</div>
+            <h4>Product Design</h4>
+            <p>Studios &amp; workshops</p>
+        </div>
+        <div class="field-card">
+            <div class="icon">◫</div>
+            <h4>Design Showroom</h4>
+            <p>Product &amp; retail display</p>
+        </div>
+        <div class="field-card">
+            <div class="icon">▱</div>
+            <h4>Architecture</h4>
+            <p>Firms &amp; drafting studios</p>
+        </div>
+        <div class="field-card">
+            <div class="icon">⚒</div>
+            <h4>Contractors</h4>
+            <p>Building &amp; trades</p>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     REAL TENANTS — built-out spaces already here
+══════════════════════════════════════════════ -->
+<section class="tenants section">
+    <p class="eyebrow">Already Here</p>
+    <h2 class="section-title">Meet your future neighbors</h2>
+    <div class="rule"></div>
+
+    <div class="tenant-grid">
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./532SantaBarbara-Wilco-2.jpg" alt="Wilco Group's built-out office entrance at 532 Santa Barbara Street, showing the arched brick entryway">
+                <img class="photo" src="./532SantaBarbara-Wilco-1.jpg" alt="Wilco Group's conference room with a wall-mounted TV and seating for six">
+                <button class="photo-nav prev" onclick="cycleTenantPhoto(this, -1)" aria-label="Previous photo">&larr;</button>
+                <button class="photo-nav next" onclick="cycleTenantPhoto(this, 1)" aria-label="Next photo">&rarr;</button>
+                <div class="photo-dots">
+                    <span class="dot active"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="cap">
+                <span class="tag">532 Santa Barbara Street</span>
+                <h4>Wilco Group</h4>
+                <p>Design &amp; build contractor — occupying one of the complex's arched-entry units, built out as a working office.</p>
+            </div>
+        </div>
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./216-GlobalLifestyle.jpeg" alt="Global Lifestyle's industrial design studio at 216 East Cota Street, with an open workspace and glass-walled conference room under exposed wood beams">
+            </div>
+            <div class="cap">
+                <span class="tag">216 East Cota Street</span>
+                <h4>Global Lifestyle</h4>
+                <p>Industrial design studio — open workspace and glass conference room under the same exposed wood beam ceilings.</p>
+            </div>
+        </div>
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./528SB-Bowlus.jpeg" alt="Bowlus design studio at 528 Santa Barbara Street, with a materials and finish swatch wall against exposed brick">
+                <img class="photo" src="./528SB-Bowlus-2.jpeg" alt="A polished Bowlus travel trailer under a Bowlus nameplate inside the workshop">
+                <img class="photo" src="./Bowlus-3.jpeg" alt="A Bowlus travel trailer parked on a hillside overlooking the Santa Barbara backcountry">
+                <button class="photo-nav prev" onclick="cycleTenantPhoto(this, -1)" aria-label="Previous photo">&larr;</button>
+                <button class="photo-nav next" onclick="cycleTenantPhoto(this, 1)" aria-label="Next photo">&rarr;</button>
+                <div class="photo-dots">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="cap">
+                <span class="tag">528 Santa Barbara Street</span>
+                <h4>Bowlus</h4>
+                <p>Luxury travel trailer design &amp; fabrication — American-made aluminum trailers, built and finished on-site.</p>
+            </div>
+        </div>
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./208ECota-HiFiClub.jpg" alt="A custom home theater installation by HiFi Club, with a wall of screens built into wood paneling">
+                <img class="photo" src="./208ECota-HiFiClub2.jpg" alt="A discreet TV lift installation by HiFi Club, hidden into a bedroom furniture piece">
+                <button class="photo-nav prev" onclick="cycleTenantPhoto(this, -1)" aria-label="Previous photo">&larr;</button>
+                <button class="photo-nav next" onclick="cycleTenantPhoto(this, 1)" aria-label="Next photo">&rarr;</button>
+                <div class="photo-dots">
+                    <span class="dot active"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="cap">
+                <span class="tag">208 East Cota Street</span>
+                <h4>HiFi Club</h4>
+                <p>Custom home theater &amp; whole-house audio — design, installation, and calibration for serious listening rooms.</p>
+            </div>
+        </div>
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./530SB-JeffClarkPhotography.jpg" alt="Jeff Clark Photography's portfolio site, showing commercial and outdoor lifestyle photography work">
+            </div>
+            <div class="cap">
+                <span class="tag">530 Santa Barbara Street</span>
+                <h4>Jeff Clark Photography</h4>
+                <p>Commercial &amp; outdoor lifestyle photography — shooting product and adventure work for outdoor and cycling brands.</p>
+            </div>
+        </div>
+        <div class="tenant-card">
+            <div class="tenant-photos">
+                <img class="photo active" src="./ClearConstruction1.jpg" alt="A Clear Construction kitchen remodel with a vaulted beamed ceiling and large center island">
+                <img class="photo" src="./ClearConstruction2.jpg" alt="A Clear Construction kitchen remodel with gray cabinetry and brass fixtures">
+                <img class="photo" src="./ClearConstruction3.jpg" alt="A Clear Construction outdoor living space with a covered patio, kitchen, and fireplace">
+                <button class="photo-nav prev" onclick="cycleTenantPhoto(this, -1)" aria-label="Previous photo">&larr;</button>
+                <button class="photo-nav next" onclick="cycleTenantPhoto(this, 1)" aria-label="Next photo">&rarr;</button>
+                <div class="photo-dots">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="cap">
+                <span class="tag">532 Garden Street</span>
+                <h4>Clear Construction</h4>
+                <p>High-end design &amp; build contractor — kitchen remodels, additions, and outdoor living spaces for discerning homeowners.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AVAILABLE NOW
+══════════════════════════════════════════════ -->
+<section class="units-teaser">
+    <p class="eyebrow">Ready Now</p>
+    <h2 class="section-title">Three units, ready for your studio</h2>
+    <div class="rule"></div>
+    <p class="lede">Triple-net leases. Tours by appointment. Full details, photos, and floor plans on the Available Units page.</p>
+
+    <div class="avail-grid">
+        <div class="avail-card">
+            <div class="avail-badge">Available Now</div>
+            <div class="avail-unit-label">Unit 210 · East Cota Street</div>
+            <div class="avail-sf">2,300</div>
+            <div class="avail-sf-sub">Square Feet</div>
+            <p class="avail-use">Signage visible from East Cota St., reception entry, wet pantry, 2 bathrooms. Ideal for showroom or office.</p>
+            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+        </div>
+        <div class="avail-card soon">
+            <div class="avail-badge">Available with 30 Days Notice</div>
+            <div class="avail-unit-label">Unit 218 · East Cota Street</div>
+            <div class="avail-sf">1,894</div>
+            <div class="avail-sf-sub">Square Feet</div>
+            <p class="avail-use">14'+ exposed beam ceilings, large 10' roll-up door, concrete floors. Can combine with 220 for 4,747sf contiguous.</p>
+            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+        </div>
+        <div class="avail-card soon">
+            <div class="avail-badge">Available with 30 Days Notice</div>
+            <div class="avail-unit-label">Unit 220 · East Cota Street</div>
+            <div class="avail-sf">2,853</div>
+            <div class="avail-sf-sub">Square Feet</div>
+            <p class="avail-use">14'+ exposed beam ceilings, large 10' roll-up door, own street entrance. Can combine with 218 for 4,747sf contiguous.</p>
+            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PICTURE IT — CONCEPT RENDERINGS OF THE UNITS
+══════════════════════════════════════════════ -->
+<section class="moodboard section" id="gallery">
+    <p class="eyebrow">Picture It</p>
+    <h2 class="section-title">Concept Renderings</h2>
+    <div class="rule"></div>
+
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <img class="photo" src="./210%20Rendering-studio.jpeg" alt="Concept rendering of Unit 210 built out as a product design studio with 3D printers, a materials wall, and workstations">
+            <div class="cap">
+                <span class="tag">Unit 210 · Concept Rendering</span>
+                <h4>Product Design Studio</h4>
+                <p>Materials wall, 3D printers, and desk space under the exposed beam ceiling — prototyping and presentation in one room.</p>
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img class="photo" src="./210Rendering.jpeg" alt="Concept rendering of Unit 210's arched brick breezeway styled as a gallery walkway with plantings">
+            <div class="cap">
+                <span class="tag">Unit 210 · Concept Rendering</span>
+                <h4>Gallery Walkway</h4>
+                <p>The signature brick arch framed as a gallery moment — greenery and light leading clients into the space.</p>
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img class="photo" src="./210Rendering-GallerySpace.jpeg" alt="Concept rendering of Unit 210 built out as an exhibition and product gallery space with display pedestals and framed artwork">
+            <div class="cap">
+                <span class="tag">Unit 210 · Concept Rendering</span>
+                <h4>Exhibition &amp; Gallery Space</h4>
+                <p>Framed work on the walls, display pedestals on the floor, and the roll-up door open to the back lot — part gallery, part showroom.</p>
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img class="photo" src="./218%20Rendering.jpeg" alt="Concept rendering of Unit 218 built out as a design studio with a materials sample wall labeled Design Studio">
+            <div class="cap">
+                <span class="tag">Unit 218 · Concept Rendering</span>
+                <h4>Design Studio</h4>
+                <p>Desks down the brick wall, a sample and finishes wall facing the roll-up door — built for client walk-throughs.</p>
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img class="photo" src="./220%20Rendering.jpeg" alt="Concept rendering of Unit 220 built out as an architecture studio with drafting desks and models">
+            <div class="cap">
+                <span class="tag">Unit 220 · Concept Rendering</span>
+                <h4>Architecture Studio</h4>
+                <p>Drafting desks, model-making tables, and a reading corner — a working studio with room for client review.</p>
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img class="photo" src="./220%20Rendering-Gallery.jpeg" alt="Concept rendering of Unit 220 built out as an art and design gallery with exhibition walls and display cases">
+            <div class="cap">
+                <span class="tag">Unit 220 · Concept Rendering</span>
+                <h4>Gallery &amp; Showroom</h4>
+                <p>Exhibition walls and a display case down the open floor — equally suited to product launches or gallery shows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FINAL CTA
+══════════════════════════════════════════════ -->
+<section class="final-cta">
+    <p class="eyebrow">Let's See If It's a Fit</p>
+    <h2 class="section-title">Come walk the space.</h2>
+    <div class="rule" style="margin-left:auto;margin-right:auto;"></div>
+    <p class="lede">Talk through how your studio, showroom, or office could take shape here — tours are by appointment.</p>
+    <div class="hero-actions">
+        <a href="mailto:management@plazacommercialcenter.com?subject=Design Community Inquiry" class="btn-primary">Schedule a Tour</a>
+        <a href="tel:+18056812878" class="btn-ghost">(805) 681-2878</a>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-name">Plaza Commercial Center</div>
+    <div class="footer-copy">&copy; 2026 Plaza Commercial Center &nbsp;·&nbsp; Santa Barbara, CA</div>
+</footer>
+
+<script>
+    function cycleTenantPhoto(btn, dir) {
+        var wrap = btn.closest('.tenant-photos');
+        var photos = wrap.querySelectorAll('.photo');
+        var dots = wrap.querySelectorAll('.dot');
+        var idx = 0;
+        for (var i = 0; i < photos.length; i++) {
+            if (photos[i].classList.contains('active')) { idx = i; break; }
+        }
+        photos[idx].classList.remove('active');
+        if (dots[idx]) dots[idx].classList.remove('active');
+        idx = (idx + dir + photos.length) % photos.length;
+        photos[idx].classList.add('active');
+        if (dots[idx]) dots[idx].classList.add('active');
+    }
+</script>
+
+</body>
+</html>
