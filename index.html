@@ -87,7 +87,7 @@
         /* ─── HERO ───────────────────────────────── */
         .hero {
             min-height: 100vh;
-            background: url('./plazacommercial-2.jpg') center center / cover no-repeat;
+            background: url('./site/plazacommercial-2.jpg') center center / cover no-repeat;
             display: flex;
             align-items: flex-end;
             padding: 80px 52px 88px;
@@ -1139,7 +1139,7 @@
                 <li>NNN / Triple Net lease</li>
             </ul>
             <button class="gallery-btn" onclick="openGallery('210')">&#9654;&nbsp; Photos &amp; Floor Plan</button>
-            <a href="./Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
+            <a href="./docs/Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
             <a href="mailto:management@plazacommercialcenter.com?subject=Leasing Inquiry: Unit 210" class="avail-inquire">Inquire &rarr;</a>
         </div>
 
@@ -1158,7 +1158,7 @@
                 <li>NNN / Triple Net lease</li>
             </ul>
             <button class="gallery-btn" onclick="openGallery('218')">&#9654;&nbsp; Photos &amp; Floor Plan</button>
-            <a href="./Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
+            <a href="./docs/Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
             <a href="mailto:management@plazacommercialcenter.com?subject=Leasing Inquiry: Unit 218" class="avail-inquire">Inquire &rarr;</a>
         </div>
 
@@ -1177,7 +1177,7 @@
                 <li>NNN / Triple Net lease</li>
             </ul>
             <button class="gallery-btn" onclick="openGallery('220')">&#9654;&nbsp; Photos &amp; Floor Plan</button>
-            <a href="./Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
+            <a href="./docs/Plaza-Commercial-Center-Brochure.pdf" class="gallery-btn" style="text-decoration:none;box-sizing:border-box;" target="_blank" rel="noopener">&#8681;&nbsp; Download Brochure</a>
             <a href="mailto:management@plazacommercialcenter.com?subject=Leasing Inquiry: Unit 220" class="avail-inquire">Inquire &rarr;</a>
         </div>
 
@@ -1306,7 +1306,7 @@
             </div>
         </div>
         <div>
-            <img src="./plazamap2.png" alt="Plaza Commercial Center location map" style="width:100%; display:block; border:1px solid var(--cream-dark);">
+            <img src="./site/plazamap2.png" alt="Plaza Commercial Center location map" style="width:100%; display:block; border:1px solid var(--cream-dark);">
         </div>
     </div>
 
@@ -1396,18 +1396,18 @@
 const UNITS = {
     '210': {
         name: 'Unit 210  ·  East Cota Street',
-        photos: ['210-interior-1.jpg','210-interior-2.jpg','210-interior-3.jpg','210-interior-4.jpg','210-interior-5.jpg','plazacommercial-2.jpg','210Rendering-GallerySpace.jpeg','210Rendering.jpeg','210 Rendering-studio.jpeg','210ECotaFloorPlan.png'],
-        floorplan: '210ECotaFloorPlan.png'
+        photos: ['units/210/210-interior-1.jpg','units/210/210-interior-2.jpg','units/210/210-interior-3.jpg','units/210/210-interior-4.jpg','units/210/210-interior-5.jpg','site/plazacommercial-2.jpg','units/210/210Rendering-GallerySpace.jpeg','units/210/210Rendering.jpeg','units/210/210-Rendering-studio.jpeg','units/210/210ECotaFloorPlan.png'],
+        floorplan: 'units/210/210ECotaFloorPlan.png'
     },
     '218': {
         name: 'Unit 218  ·  East Cota Street',
-        photos: ['218-A.jpg','218-B.jpg','218 Rendering.jpeg','218220ecota_floorplan.png'],
-        floorplan: '218220ecota_floorplan.png'
+        photos: ['units/218/218-A.jpg','units/218/218-B.jpg','units/218/218-Rendering.jpeg','units/shared/218-220-floorplan.png'],
+        floorplan: 'units/shared/218-220-floorplan.png'
     },
     '220': {
         name: 'Unit 220  ·  East Cota Street',
-        photos: ['220-interior-1.jpg','220-interior-2.jpg','220-interior-3.jpg','220 Rendering-Gallery.jpeg','220 Rendering.jpeg','218-220-BathroomFinish.jpg','220-Entrance-A.jpg','220-Entrance-B.jpg','218220ecota_floorplan.png'],
-        floorplan: '218220ecota_floorplan.png'
+        photos: ['units/220/220-interior-1.jpg','units/220/220-interior-2.jpg','units/220/220-interior-3.jpg','units/220/220-Rendering-Gallery.jpeg','units/220/220-Rendering.jpeg','units/shared/218-220-BathroomFinish.jpg','units/220/220-Entrance-A.jpg','units/220/220-Entrance-B.jpg','units/shared/218-220-floorplan.png'],
+        floorplan: 'units/shared/218-220-floorplan.png'
     }
 };
 
