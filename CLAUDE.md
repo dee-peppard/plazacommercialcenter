@@ -1,0 +1,112 @@
+# Plaza Commercial Center — Website Project Guide
+
+This file orients any agent (Claude Code or otherwise) picking up this project cold.
+
+## What this is
+
+The marketing website for **Plaza Commercial Center**, a midcentury-modern commercial flex complex in Santa Barbara, CA's Lagoon District, managed by Stephanie McGowan (management@plazacommercialcenter.com, (805) 681-2878). The complex has 15 flex units (industrial/retail/office) spanning three street frontages — East Cota Street, Garden Street, and Santa Barbara Street. Live at [plazacommercialcenter.com](https://plazacommercialcenter.com).
+
+The site is static HTML/CSS with light inline JS (photo lightbox gallery, mobile hamburger menu, tenant photo carousels) — no framework, no build step. Each `.html` file is fully self-contained with its own `<style>` block; there is no shared stylesheet.
+
+**This is not a git repo** — there's no commit history to fall back on. Whatever is on disk in this folder is the working copy, and it's also what gets uploaded (manually, by the user) to the GitHub Pages repo. Editing files here does nothing to the live site until the user re-uploads the changed files to GitHub — this repo has no flat/deploy split like some of the other sites we've built; there's just this one folder, and **the whole folder is meant to be selected and dragged into GitHub as-is** (that's why assets are organized into subfolders below rather than left flat — GitHub Pages preserves folder structure, so the relative paths in the HTML keep working after upload).
+
+## Folder structure
+
+As of September 2026 this folder was reorganized from ~50 flat files at the root into subfolders. **Every image/PDF reference in `index.html` and `design-community.html` uses these paths — if you add a new asset, drop it in the matching folder and reference it the same way (`./folder/filename`), don't add new files to the root.**
+
+| Folder | Contents |
+|---|---|
+| `site/` | Site-wide assets used across pages: hero photo (`plazacommercial-2.jpg`), neighborhood map (`plazamap2.png`) |
+| `docs/` | `Plaza-Commercial-Center-Brochure.pdf` — the leasing brochure |
+| `units/210/`, `units/218/`, `units/220/` | Interior photos, concept renderings, and floor plans specific to each available unit |
+| `units/shared/` | Assets shared by two units — the 218/220 bathroom finish photo and their combined floor plan |
+| `tenants/` | Real current-tenant photos used in `design-community.html`'s "Meet Your Future Neighbors" section (Wilco Group, Global Lifestyle, Bowlus, HiFi Club, Jeff Clark Photography, Clear Construction) |
+| `design/` | Mood board images used in `design-community.html`'s "The Palette" section |
+| root (`index.html`, `design-community.html`, `email-signature.html`, `CLAUDE.md`) | The pages themselves and this doc |
+
+**File naming inside the new folders was also cleaned up** — a few files that had spaces in their names (e.g. the old `210 Rendering-studio.jpeg`, `218 Rendering.jpeg`) were renamed to use hyphens instead (`210-Rendering-studio.jpeg`, `218-Rendering.jpeg`) so paths never need `%20` encoding. If you add a new file, keep using hyphens instead of spaces for the same reason.
+
+### Unreferenced/duplicate files live OUTSIDE this folder, in a sibling `Plaza Archive (unused originals)/` folder
+
+That sibling folder (next to `Plaza Website/`, not inside it) holds: duplicate/uncompressed originals (large `.png` versions of images now used as smaller `.jpg`s, e.g. `208ECota-HiFiClub.png`+`.jpg`, `218-A.png`+`.jpg`, `530SB-JeffClarkPhotography.png`+`.jpg`), an old floor plan version, and a couple of dropped placeholder/rendering images. Nothing was deleted — it was moved there (Sept 2026) specifically because GitHub's browser drag-and-drop uploader rejected a commit for having files too large, and that archive folder (~48MB of dead weight not referenced by any page) was the prime suspect. **Do not drag that sibling folder into GitHub — only `Plaza Website/` itself gets uploaded.** If you need to reference or restore something from it, check there first before assuming it's gone; there's no git history to fall back on otherwise (see below).
+
+## Files at the root
+
+| File | Purpose |
+|---|---|
+| `index.html` | Homepage — the main site, live at the root domain |
+| `design-community.html` | Secondary landing page pitching the complex to designers/architects/contractors/showrooms |
+| `email-signature.html` | Standalone HTML email signature for management team members — not linked from the site nav, opened directly in a browser and copy/pasted into an email client |
+
+## Design system
+
+- **Palette (midcentury modern, warm/terracotta):**
+  - `--cream: #F6F1E9` · `--cream-dark: #EDE8DE` · `--warm-white: #FAF8F4` (backgrounds)
+  - `--dark: #252220` · `--dark-mid: #3A3530` (dark sections, nav, footer)
+  - `--terracotta: #B86245` (primary accent — links, buttons, badges) · `--terra-light: #D4896E`
+  - `--sage: #6B7B5E` (secondary accent, occasional feature tile)
+  - `--sand: #C4B49A` (muted text/borders/dividers)
+- **Headline font:** `Cormorant Garamond` (serif, weights 300/400/500/600, italic 300/400 for emphasis spans)
+- **Body font:** `DM Sans` (sans, weights 300/400/500)
+- **Fonts loaded per-page:** `family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500`
+- **Layout:** full-width sections with `padding: 104px 52px` (`.section`), no `max-width` wrapper container (unlike some other sites we've built — this one runs edge-to-edge with generous side padding instead of a centered `.wrap`)
+- **Nav:** fixed, dark (`rgba(37,34,32,0.96)` + backdrop blur), hamburger + full-screen dark overlay menu below 960px, plain `onclick` toggling a `.open` class (no JS framework)
+- **Mobile breakpoints:** `@media (min-width: 641px) and (max-width: 960px)` for tablet, `@media (max-width: 960px)` for general mobile, `@media (max-width: 640px)` for phone-specific tweaks — all at the bottom of each page's `<style>` block
+
+### Recurring components (copy-pasted per page, not shared)
+
+- **`.hero`** — full-bleed background photo (not an illustration/line-art like other sites — real photography), dark gradient + warm radial-tint overlay, arch-motif decorative border element referencing the building's arched entrances, content bottom-left, address bottom-right (hidden on mobile).
+- **`.stats-bar`** — solid terracotta band of stat tiles (unit count, ceiling height, street frontages, etc.) directly under the hero. `index.html` only.
+- **`.avail-card` / `.avail-grid`** — the three highlighted "Available Units" cards on `index.html` (`#available`). Each has a badge, unit label, big square-footage number, a feature list, a "Photos & Floor Plan" gallery button (`onclick="openGallery('unitId')"`), a brochure download link, and a `mailto:` inquire link. **`design-community.html` has its own copy of these same three units as a static teaser** (`.units-teaser` section, no gallery button) — badges must be updated in both places when availability changes.
+- **`.unit-card` / `.units-grid`** — the full "All Units" table (`#units`) on `index.html`, grouped by street via `.street-block`, with `.badge-available` / `.badge-soon` / `.badge-leased` status pills.
+- **Photo gallery lightbox** — full-screen modal (`#galleryModal`) driven by a `UNITS` JS object keyed by unit id, each with a `photos` array and a `floorplan` filename. Arrow nav, dot indicators, keyboard (←/→/Esc), touch swipe. Only on `index.html`; `design-community.html` uses plain inline images instead (no lightbox).
+- **`.tenant-card` / `.tenant-photos`** — on `design-community.html` only. Real current tenants (Wilco Group, Global Lifestyle, Bowlus, HiFi Club, Jeff Clark Photography, Clear Construction) with a small photo carousel (`cycleTenantPhoto()` JS, prev/next + dots) per card.
+- **`.gallery-card`** on `design-community.html`'s "Picture It" section — AI/concept renderings of units 210/218/220 styled as different studio use-cases (product design studio, gallery, architecture studio), each with a caption.
+- **Contact pattern:** every "Schedule a Tour" / "Inquire" / "Request a Tour" CTA site-wide is a `mailto:management@plazacommercialcenter.com?subject=...` link — **not** an on-page form. This is the opposite convention from some other sites we've built (which route CTAs to an on-page Formspree form) — don't try to add a contact form here unless asked; the established pattern is mailto links with a pre-filled subject line per context (e.g. `?subject=Leasing Inquiry: Unit 210`, `?subject=Design Community Inquiry`, `?subject=Tour Request`).
+
+## Page inventory
+
+| Page | File | Notes |
+|---|---|---|
+| Homepage | `index.html` | Promo banner (links to Design Community) → Nav → Hero → Stats → About → Available Units → All Units → Neighborhood → Contact → Footer → gallery lightbox |
+| Design Community | `design-community.html` | Hero → Palette (mood boards) → Who's Already Here (field types) → Picture It (concept renderings) → Available Now (static teaser) → Meet Your Future Neighbors (real tenants) → Final CTA → Footer |
+| Email signature | `email-signature.html` | Not part of site nav — a standalone table-based HTML signature template with copy/paste instructions baked into the page itself |
+
+Nav order (`index.html` and `design-community.html`, identical): **Available → All Units → Neighborhood → Design Community → Contact**. `design-community.html`'s internal section links point back to `index.html` (e.g. `index.html#available`) since those sections don't exist on that page.
+
+## Current unit status
+
+15 units total. As of this writing:
+
+| Unit | SF | Status |
+|---|---|---|
+| 202 E. Cota | 2,496 | Leased |
+| 208 E. Cota | 2,452 | Leased |
+| **210 E. Cota** | **2,300** | **Available Now** |
+| 214 E. Cota | 3,169 | Leased |
+| 216 E. Cota | 3,167 | Leased |
+| **218 E. Cota** | **1,894** | **Available October 1st** |
+| **220 E. Cota** | **2,853** | **Available 30-60 Days Notice** |
+| 228 E. Cota | 2,012 | Leased |
+| 230 E. Cota | 3,989 | Leased |
+| 523 Garden St | 1,615 | Leased |
+| 525 Garden St | 1,732 | Leased |
+| 527 Garden St | 1,555 | Leased |
+| 528 Santa Barbara St | 1,988 | Leased |
+| 530 Santa Barbara St | 971 | Leased |
+| 532A Santa Barbara St | 1,819 | Leased |
+
+Units 218 + 220 can combine for 4,747sf contiguous. All leases are NNN/Triple Net.
+
+⚠️ **A status change to an available unit must be updated in up to three places:** the `.avail-card` in `index.html`'s Available Units section, the `.badge` in `index.html`'s All Units table, and the static teaser card in `design-community.html`'s "Available Now" section (that one is plain hardcoded text, not shared data — it will silently go stale if forgotten).
+
+## Known open items / things a future agent should know
+
+- **No git history.** Treat any request to "revert" or "restore a previous version" as impossible unless the user has a manual backup — there's nothing to check out.
+- **GitHub's web drag-and-drop uploader only adds/updates files — it never deletes ones missing from what you dragged in.** When the local folder was reorganized into subfolders (Sept 2026), uploading the new structure left every old flat-file duplicate still sitting at the repo root on GitHub alongside the new folders. If you ever reorganize local files again, you must manually delete the now-stale files on github.com afterward (select them via the row checkboxes in the repo's file list, then use the "Delete files" button that appears) — the upload step alone will not do this for you.
+- **GitHub's browser upload rejects files (or a batch) that push past its size limit.** Keep the sibling `Plaza Archive (unused originals)/` folder (see above) out of what gets dragged into GitHub — it's not referenced by any page and was the cause the one time this came up. If a genuine "commit failed / file too large" error comes back after that, check `find . -type f -size +20M` inside `Plaza Website/` for the actual offending file before assuming it's the same cause again.
+- **This site's CTA convention is `mailto:` links, not a contact form** — this is a deliberate difference from other sites in this portfolio, not an inconsistency to "fix."
+- **`design-community.html` duplicates unit availability as static text.** Any availability change on `index.html` needs a matching manual edit there.
+- **Concept renderings on `design-community.html` are AI-generated/illustrative**, not photos of actual completed build-outs — labeled "Concept Rendering" in their captions. Don't present them as real installed tenant improvements.
+- **The phone number `(805) 681-2878` is live and current** on both `index.html`'s contact section and `design-community.html`'s final CTA.
+- **This project is unrelated to the Kora Commercial LLC site** — separate business, separate design system, separate folder. Don't cross-reference asset paths, brand colors, or component conventions between the two; they happen to share an agent history, not a codebase.
