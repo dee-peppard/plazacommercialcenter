@@ -269,7 +269,8 @@
         .units-teaser .eyebrow { color: var(--terracotta); }
         .units-teaser .section-title { color: var(--cream); }
         .units-teaser .lede { color: rgba(246,241,233,0.55); }
-        .avail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 44px; }
+        .avail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 44px; }
+        @media (min-width: 961px) and (max-width: 1360px) { .avail-grid { grid-template-columns: repeat(2, 1fr); } }
         .avail-card { background: var(--dark-mid); padding: 36px 30px 32px; border-top: 3px solid var(--terracotta); }
         .avail-card.soon { border-top-color: var(--sand); }
         .avail-badge {
@@ -502,9 +503,9 @@
 ══════════════════════════════════════════════ -->
 <section class="units-teaser">
     <p class="eyebrow">Ready Now</p>
-    <h2 class="section-title">Three units, ready for your studio</h2>
+    <h2 class="section-title">Space ready for your studio</h2>
     <div class="rule"></div>
-    <p class="lede">Triple-net leases. Tours by appointment. Full details, photos, and floor plans on the Available Units page.</p>
+    <p class="lede">Triple-net leases. Tours by appointment. Full details, photos, and floor plans on each listing page.</p>
 
     <div class="avail-grid">
         <div class="avail-card">
@@ -513,7 +514,7 @@
             <div class="avail-sf">2,300</div>
             <div class="avail-sf-sub">Square Feet</div>
             <p class="avail-use">Signage visible from East Cota St., reception entry, wet pantry, 2 bathrooms. Ideal for showroom or office.</p>
-            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+            <a href="./210ecota/" class="avail-link">Full Listing &rarr;</a>
         </div>
         <div class="avail-card soon">
             <div class="avail-badge">Available October 1st</div>
@@ -521,7 +522,7 @@
             <div class="avail-sf">1,894</div>
             <div class="avail-sf-sub">Square Feet</div>
             <p class="avail-use">14'+ exposed beam ceilings, large 10' roll-up door, concrete floors. Can combine with 220 for 4,747sf contiguous.</p>
-            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+            <a href="./218ecota/" class="avail-link">Full Listing &rarr;</a>
         </div>
         <div class="avail-card soon">
             <div class="avail-badge">Available 30-60 Days Notice</div>
@@ -529,7 +530,15 @@
             <div class="avail-sf">2,853</div>
             <div class="avail-sf-sub">Square Feet</div>
             <p class="avail-use">14'+ exposed beam ceilings, large 10' roll-up door, own street entrance. Can combine with 218 for 4,747sf contiguous.</p>
-            <a href="index.html#available" class="avail-link">Full Listing &rarr;</a>
+            <a href="./220ecota/" class="avail-link">Full Listing &rarr;</a>
+        </div>
+        <div class="avail-card">
+            <div class="avail-badge">218: Oct. 1st &middot; 220: 30-60 Days</div>
+            <div class="avail-unit-label">Units 218 + 220 &middot; East Cota Street</div>
+            <div class="avail-sf">4,747</div>
+            <div class="avail-sf-sub">Contiguous Square Feet</div>
+            <p class="avail-use">Lease both units as one space. 14'+ exposed beam ceilings, two 10' roll-up doors, concrete floors and room for a full studio, showroom or headquarters.</p>
+            <a href="./218-220ecota/" class="avail-link">Full Listing &rarr;</a>
         </div>
     </div>
 </section>
