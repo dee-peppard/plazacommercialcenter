@@ -21,7 +21,8 @@ PAGES = {
         title="210 East Cota Street — 2,300 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 210 at Plaza Commercial Center: 2,300 SF of flex office/showroom space in Santa Barbara's Lagoon District with 14-ft ceilings, arched brick entrance, reception, conference room and private parking. NNN lease.",
         tagline="A 2,300 SF single-story suite behind one of the Plaza's signature arched brick entrances — with 14-foot ceilings, exposed wood beams and signage visible from East Cota Street.",
-        hero=f"{U}/210/210-interior-1.jpg", hero_pos="center 55%",
+        hero=f"{U}/210/210Rendering.jpeg", hero_pos="center 50%", hero_tag="Concept rendering",
+        og=f"{U}/210/210-interior-1.jpg",
         thumb=f"{U}/210/210-interior-5.jpg",
         blurb="Showroom or office · reception entry · conference room",
         overview=[
@@ -49,7 +50,6 @@ PAGES = {
             ("210/210-Rendering-studio.jpeg", "Product design studio", "Concept rendering of Unit 210 as a product design studio with workbenches and a materials wall"),
             ("210/210Rendering-GallerySpace.jpeg", "Exhibition & gallery space", "Concept rendering of Unit 210 as an exhibition and product gallery"),
             ("210/210Rendering.jpeg", "Gallery walkway", "Concept rendering of Unit 210's long room leading to the brick arch, styled as a gallery walkway"),
-            ("210/210Cota-EntranceRendering.jpg", "Entry facade concept", "Elevation sketch of the arched brick entry facade of Unit 210 with landscaping"),
         ],
         plan="210/210ECotaFloorPlan.png", plan_alt="Floor plan of Unit 210 showing open workspace, conference room, kitchen and two bathrooms",
         plan_title="Unit 210 Floor Plan",
@@ -65,7 +65,7 @@ PAGES = {
         title="218 East Cota Street — 1,894 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 218 at Plaza Commercial Center: 1,894 SF of flex space in Santa Barbara's Lagoon District with 14-ft+ exposed wood beam ceilings, a 10-ft roll-up door and concrete floors. Available October 1st. NNN lease.",
         tagline="A 1,894 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a brick wall and a large 10′ roll-up door — available October 1st.",
-        hero=f"{U}/218/218-B.jpg", hero_pos="center 50%", hero_ai=True,
+        hero=f"{U}/218/218-B.jpg", hero_pos="center 50%", hero_tag="AI enhanced",
         og=f"{U}/218/218-Rendering.jpeg",
         thumb=f"{U}/218/218-B.jpg", thumb_ai=True,
         blurb="10′ roll-up door · exposed beams · can combine with 220",
@@ -520,7 +520,7 @@ def build(key):
 
 <!-- HERO -->
 <header class="hero" style="background-image:url('{p['hero']}');background-position:{p['hero_pos']};">
-    {'<span class="hero-ai">AI enhanced</span>' if p.get('hero_ai') else ''}
+    {'<span class="hero-ai">' + p['hero_tag'] + '</span>' if p.get('hero_tag') else ''}
     <div class="hero-content">
         <p class="hero-eyebrow">Available for Lease &middot; Lagoon District, Santa Barbara</p>
         <h1 class="hero-title">{esc(p['h1_num'])} <em>East Cota</em></h1>
@@ -573,7 +573,6 @@ def build(key):
 {real}
     </div>
     <h3 class="sub">Concept Renderings</h3>
-    <p class="note">Illustrative concepts of how the space could be built out &mdash; not photographs of completed tenant improvements.</p>
     <div class="g-grid">
 {rend}
     </div>
