@@ -75,7 +75,7 @@ That sibling folder (next to `Plaza Website/`, not inside it) holds: duplicate/u
 |---|---|---|
 | Homepage | `index.html` | Promo banner (links to Design Community) → Nav → Hero → Stats → About → Available Units → All Units → Neighborhood → Contact → Footer → gallery lightbox |
 | Design Community | `design-community.html` | Hero → Palette (mood boards) → Who's Already Here (field types) → Picture It (concept renderings) → Available Now (static teaser) → Meet Your Future Neighbors (real tenants) → Final CTA → Footer |
-| Unit landing pages (4) | `210ecota/index.html`, `218ecota/index.html`, `220ecota/index.html`, `218-220ecota/index.html` | Per-unit leasing pages, added Sept 2026. Not linked from the main site nav (linked to from each other, and they link back to `/` and `/design-community.html`) |
+| Unit landing pages (4) | `210ecota/index.html`, `218ecota/index.html`, `220ecota/index.html`, `218-220ecota/index.html` | Per-unit leasing pages, added Sept 2026. Linked from the "View Unit Page" button on each Available Units card in `index.html` (210/218/220 only — the combined 218-220 page is reachable via the unit switcher on the unit pages), and from each other; they link back to `/` and `/design-community.html` |
 
 Nav order (`index.html` and `design-community.html`, identical): **Available → All Units → Neighborhood → Design Community → Contact**. `design-community.html`'s internal section links point back to `index.html` (e.g. `index.html#available`) since those sections don't exist on that page.
 
