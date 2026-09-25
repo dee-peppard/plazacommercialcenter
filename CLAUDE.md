@@ -24,6 +24,8 @@ As of September 2026 this folder was reorganized from ~50 flat files at the root
 | `units/shared/` | Assets shared by two units — the 218/220 bathroom finish photo and their combined floor plan |
 | `tenants/` | Real current-tenant photos used in `design-community.html`'s "Meet Your Future Neighbors" section (Wilco Group, Global Lifestyle, Bowlus, HiFi Club, Jeff Clark Photography, Clear Construction) |
 | `design/` | Mood board images used in `design-community.html`'s "The Palette" section |
+| `210ecota/`, `218ecota/`, `220ecota/`, `218-220ecota/` | One `index.html` each — the per-unit landing pages (see "Unit landing pages" below). Served at `/210ecota`, `/218ecota`, `/220ecota`, `/218-220ecota` |
+| `tools/` | `build_unit_pages.py` — generator for the four unit landing pages |
 | root (`index.html`, `design-community.html`, `email-signature.html`, `CLAUDE.md`) | The pages themselves and this doc |
 
 **File naming inside the new folders was also cleaned up** — a few files that had spaces in their names (e.g. the old `210 Rendering-studio.jpeg`, `218 Rendering.jpeg`) were renamed to use hyphens instead (`210-Rendering-studio.jpeg`, `218-Rendering.jpeg`) so paths never need `%20` encoding. If you add a new file, keep using hyphens instead of spaces for the same reason.
@@ -74,9 +76,23 @@ That sibling folder (next to `Plaza Website/`, not inside it) holds: duplicate/u
 |---|---|---|
 | Homepage | `index.html` | Promo banner (links to Design Community) → Nav → Hero → Stats → About → Available Units → All Units → Neighborhood → Contact → Footer → gallery lightbox |
 | Design Community | `design-community.html` | Hero → Palette (mood boards) → Who's Already Here (field types) → Picture It (concept renderings) → Available Now (static teaser) → Meet Your Future Neighbors (real tenants) → Final CTA → Footer |
+| Unit landing pages (4) | `210ecota/index.html`, `218ecota/index.html`, `220ecota/index.html`, `218-220ecota/index.html` | Per-unit leasing pages, added Sept 2026. Not linked from the main site nav (linked to from each other, and they link back to `/` and `/design-community.html`) |
 | Email signature | `email-signature.html` | Not part of site nav — a standalone table-based HTML signature template with copy/paste instructions baked into the page itself |
 
 Nav order (`index.html` and `design-community.html`, identical): **Available → All Units → Neighborhood → Design Community → Contact**. `design-community.html`'s internal section links point back to `index.html` (e.g. `index.html#available`) since those sections don't exist on that page.
+
+## Unit landing pages (`/210ecota`, `/218ecota`, `/220ecota`, `/218-220ecota`)
+
+Added September 2026 as standalone leasing pages for each available unit (plus one for the combined 218 + 220 space, 4,747 SF), meant to be shared directly (LoopNet, email, QR codes). Each page has: hero + availability badge, a sticky **unit switcher** (links to all four pages), stats bar, unit summary + highlights, photo gallery with lightbox (real photos separated from labeled "Concept Renderings"), floor plan with download, an "Also available" card row linking to the other three pages, a link tile to the main site and one to Design Community, a contact section, and a footer with nav links.
+
+- **These four files are generated — don't hand-edit them.** `tools/build_unit_pages.py` holds all per-unit content (`PAGES` dict), the shared CSS/JS, and the HTML template. Edit it and run `python3 tools/build_unit_pages.py` from the repo root to rewrite all four `index.html` files, then commit. (Deliberate exception to the site's otherwise hand-authored/no-build convention: four near-identical pages drift apart fast when edited by hand.)
+- **Paths are root-relative** (`/units/210/...`, `/design-community.html`, `/`), unlike `index.html`/`design-community.html` which use `./` paths — the pages live one folder deep. Because of that they only render correctly when served from the domain root (run a local server such as `python3 -m http.server` from the repo root to preview; opening the file directly via `file://` will break images).
+- **Directory-style URLs**: each page is `<slug>/index.html` so GitHub Pages serves `/210ecota` (it 301s to `/210ecota/`). The combined page's slug is `218-220ecota`.
+- **Availability text lives in the `PAGES` dict** (`avail`, `avail_short`, `stats`, and the sentences in `overview`/`tagline`). The "Also available" cards deliberately show only size and a blurb — no status — so a status change touches fewer places. When a unit's status changes, update it in the generator (unit's own page **and** the combined 218-220 page for 218/220), regenerate, *and* still update `index.html` and `design-community.html` as described under "Current unit status".
+- **Meta/SEO**: each page has its own `<title>`, description, canonical URL (`https://www.plazacommercialcenter.com/<slug>/`) and Open Graph tags (hero image as `og:image`).
+- CTAs follow the site convention: `mailto:` links with a pre-filled subject (`Leasing Inquiry: Unit 210`, `Leasing Inquiry: Units 218 & 220`).
+- **Image provenance caveat:** `units/218/218-A.jpg` and `218-B.jpg` carry a Gemini sparkle watermark in the bottom-right corner, i.e. they are AI-generated/edited, not straight photographs. On the unit pages they are captioned neutrally ("Interior view") rather than "photo". Do not crop the watermark out to make them pass as photos; confirm with the user how they should be labeled.
+- `units/210/210ECotaFloorPlan.png` is the *previous tenant's furnished layout* (it says "Welcome to AV!"), captioned "Existing furnished layout shown for reference".
 
 ## Current unit status
 
@@ -102,7 +118,7 @@ Nav order (`index.html` and `design-community.html`, identical): **Available →
 
 Units 218 + 220 can combine for 4,747sf contiguous. All leases are NNN/Triple Net.
 
-⚠️ **A status change to an available unit must be updated in up to three places:** the `.avail-card` in `index.html`'s Available Units section, the `.badge` in `index.html`'s All Units table, and the static teaser card in `design-community.html`'s "Available Now" section (that one is plain hardcoded text, not shared data — it will silently go stale if forgotten).
+⚠️ **A status change to an available unit must be updated in up to three places on the main pages — plus the unit landing pages (see "Unit landing pages" above), which are regenerated from `tools/build_unit_pages.py`:** the `.avail-card` in `index.html`'s Available Units section, the `.badge` in `index.html`'s All Units table, and the static teaser card in `design-community.html`'s "Available Now" section (that one is plain hardcoded text, not shared data — it will silently go stale if forgotten).
 
 ## Known open items / things a future agent should know
 
@@ -111,6 +127,7 @@ Units 218 + 220 can combine for 4,747sf contiguous. All leases are NNN/Triple Ne
 - **GitHub still rejects individual files over 25MB via its API/web layers** (this is why the `Plaza Archive (unused originals)/` sibling folder — see above — stays outside the repo; it's not referenced by any page and its largest files pushed toward that ceiling). A plain `git push` doesn't have that 25MB wall (git's own soft/hard limits are much higher, ~50-100MB), so this is now unlikely to resurface, but if a push is ever rejected for size, check `find . -type f -size +20M` inside `Plaza Website/` for the offending file.
 - **This site's CTA convention is `mailto:` links, not a contact form** — this is a deliberate difference from other sites in this portfolio, not an inconsistency to "fix."
 - **`design-community.html` duplicates unit availability as static text.** Any availability change on `index.html` needs a matching manual edit there.
+- **Existing bug in `index.html` (not yet fixed):** `.mobile-menu-cta` uses `\!important` (stray backslash from a shell-escaping accident) so those declarations are invalid CSS and the mobile-menu "Schedule a Tour" button loses its styling; and the `<\!-- MOBILE MENU -->` comment is malformed and renders as stray text behind the fixed banner. `design-community.html` has the same `\!important` issue. The new unit pages don't have it.
 - **Concept renderings on `design-community.html` are AI-generated/illustrative**, not photos of actual completed build-outs — labeled "Concept Rendering" in their captions. Don't present them as real installed tenant improvements.
 - **The phone number `(805) 681-2878` is live and current** on both `index.html`'s contact section and `design-community.html`'s final CTA.
 - **This project is unrelated to the Kora Commercial LLC site** — separate business, separate design system, separate folder. Don't cross-reference asset paths, brand colors, or component conventions between the two; they happen to share an agent history, not a codebase.
