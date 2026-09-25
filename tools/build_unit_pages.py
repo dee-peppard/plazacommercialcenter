@@ -591,7 +591,7 @@ def build(key):
             <dl class="plan-facts">{facts}</dl>
             <div class="plan-actions">
                 <a class="btn-dark" href="{U}/{p['plan']}" download="{p['plan_download_name']}">&#8681;&nbsp; Download Floor Plan</a>
-                <a class="btn-dark" href="/docs/Plaza-Commercial-Center-Brochure.pdf" target="_blank" rel="noopener">&#8681;&nbsp; Property Brochure</a>
+                <a class="btn-dark" href="https://canva.link/plaza-commercial-flyers" target="_blank" rel="noopener">&#8681;&nbsp; Property Brochure</a>
             </div>
         </div>
     </div>
