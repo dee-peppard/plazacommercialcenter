@@ -65,8 +65,9 @@ PAGES = {
         title="218 East Cota Street — 1,894 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 218 at Plaza Commercial Center: 1,894 SF of flex space in Santa Barbara's Lagoon District with 14-ft+ exposed wood beam ceilings, a 10-ft roll-up door and concrete floors. Available October 1st. NNN lease.",
         tagline="A 1,894 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a brick wall and a large 10′ roll-up door — available October 1st.",
-        hero=f"{U}/218/218-B.jpg", hero_pos="center 50%",
-        thumb=f"{U}/218/218-B.jpg",
+        hero=f"{U}/218/218-B.jpg", hero_pos="center 50%", hero_ai=True,
+        og=f"{U}/218/218-Rendering.jpeg",
+        thumb=f"{U}/218/218-B.jpg", thumb_ai=True,
         blurb="10′ roll-up door · exposed beams · can combine with 220",
         overview=[
             "Unit 218 is a 1,894 SF single-story suite on East Cota Street with 14-foot-plus exposed wood beam ceilings, brick walls, concrete floors and a large 10′ roll-up door. It has two bathrooms and an open floor that can be set up as a studio, shop, showroom or office.",
@@ -83,8 +84,8 @@ PAGES = {
         ],
         stats=[("1,894", "Square Feet"), ("14′+", "Ceiling Height"), ("NNN", "Triple Net Lease"), ("Oct 1", "Availability")],
         photos=[
-            ("218/218-A.jpg", "Interior view", "Interior of Unit 218 with exposed beams, brick wall and concrete floor"),
-            ("218/218-B.jpg", "Interior view toward the roll-up door", "Interior of Unit 218 looking toward the open roll-up door"),
+            ("218/218-A.jpg", "Interior view", "Interior of Unit 218 with exposed beams, brick wall and concrete floor", True),
+            ("218/218-B.jpg", "Interior view toward the roll-up door", "Interior of Unit 218 looking toward the open roll-up door", True),
             ("shared/218-220-BathroomFinish.jpg", "Bathroom finishes", "Bathroom with wood-framed mirror and vanity, shared finish for Units 218 and 220"),
         ],
         renders=[
@@ -165,8 +166,8 @@ PAGES = {
         ],
         stats=[("4,747", "Contiguous SF"), ("14′+", "Ceiling Height"), ("NNN", "Triple Net Lease"), ("2 Units", "218 + 220")],
         photos=[
-            ("218/218-A.jpg", "Unit 218 — interior view", "Interior of Unit 218 with exposed beams, brick wall and concrete floor"),
-            ("218/218-B.jpg", "Unit 218 — toward the roll-up door", "Interior of Unit 218 looking toward the open roll-up door"),
+            ("218/218-A.jpg", "Unit 218 — interior view", "Interior of Unit 218 with exposed beams, brick wall and concrete floor", True),
+            ("218/218-B.jpg", "Unit 218 — toward the roll-up door", "Interior of Unit 218 looking toward the open roll-up door", True),
             ("220/220-interior-1.jpg", "Unit 220 — open floor and glass entry", "Unit 220 open floor with brick wall and glass entry door"),
             ("220/220-interior-2.jpg", "Unit 220 — exposed beam ceilings", "Unit 220 interior with exposed wood beam ceilings and brick back wall"),
             ("220/220-interior-3.jpg", "Unit 220 — open floor plan", "Unit 220 open concrete floor with brick wall"),
@@ -257,7 +258,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
 .body-copy{font-size:19px;font-weight:300;line-height:1.8;color:var(--dark-mid)}
 .body-copy p+p{margin-top:20px}
+.side{display:flex;flex-direction:column;gap:3px}
 .highlights{background:var(--warm-white);padding:36px 34px;border-top:3px solid var(--terracotta)}
+.lease-note{background:var(--dark);padding:30px 34px}
+.lease-note h3{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terra-light);margin-bottom:14px}
+.lease-note p{font-size:16px;font-weight:300;line-height:1.65;color:rgba(246,241,233,.78)}
+.lease-note p+p{margin-top:12px}
+.lease-note strong{font-weight:500;color:var(--cream)}
+.lease-note a{color:var(--terra-light);text-underline-offset:3px}
 .highlights h3{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terracotta);margin-bottom:20px}
 .highlights ul{list-style:none;display:flex;flex-direction:column;gap:14px}
 .highlights li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:17px;font-weight:300;line-height:1.5;color:var(--dark-mid)}
@@ -270,6 +278,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .gallery .note{font-size:14px;font-weight:300;color:rgba(58,53,48,.65);margin:-4px 0 18px}
 .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .g-item{margin:0}
+.g-frame{position:relative}
+.ai-tag{position:absolute;right:8px;bottom:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:5px 9px;pointer-events:none}
+.hero-ai{position:absolute;right:20px;bottom:20px;z-index:1;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:5px 9px}
+.o-img{position:relative}
 .g-btn{display:block;width:100%;padding:0;border:none;background:var(--cream-dark);cursor:zoom-in;aspect-ratio:3/2;overflow:hidden}
 .g-btn img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
 .g-btn:hover img,.g-btn:focus-visible img{transform:scale(1.03)}
@@ -340,7 +352,9 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
 .lb-close{background:none;border:none;color:rgba(246,241,233,.45);font-size:32px;line-height:1;cursor:pointer;padding:0 4px}
 .lb-close:hover{color:var(--cream)}
 .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px 88px;min-height:0}
-.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;display:block;user-select:none}
+.lb-fig{position:relative;display:flex;max-width:100%}
+.lb-stage img{max-width:100%;max-height:calc(100vh - 170px);object-fit:contain;display:block;user-select:none}
+.lb-ai{position:absolute;right:10px;bottom:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:6px 10px;pointer-events:none}
 .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(246,241,233,.35);font-size:64px;font-weight:200;line-height:1;cursor:pointer;padding:16px 20px;font-family:'Cormorant Garamond',serif}
 .lb-arrow:hover{color:rgba(246,241,233,.9)}
 .lb-prev{left:0}.lb-next{right:0}
@@ -369,6 +383,8 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
   .body-copy{font-size:16px;line-height:1.75}
   .highlights{padding:28px 22px}
   .highlights li{font-size:15px}
+  .lease-note{padding:26px 22px}
+  .lb-stage img{max-height:calc(100vh - 150px)}
   .g-grid{grid-template-columns:1fr 1fr;gap:10px}
   .g-item figcaption{font-size:12.5px}
   .plan-facts{grid-template-columns:1fr 1fr}
@@ -390,8 +406,8 @@ JS = r"""
   document.querySelectorAll('[data-menu-open]').forEach(function(b){b.addEventListener('click',function(){menu.classList.add('open')})});
   document.querySelectorAll('[data-menu-close]').forEach(function(b){b.addEventListener('click',function(){menu.classList.remove('open')})});
   var items=[].slice.call(document.querySelectorAll('.g-btn'));
-  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cnt=document.getElementById('lbCount'),i=0;
-  function show(n){i=(n+items.length)%items.length;var b=items[i];img.src=b.dataset.src;img.alt=b.dataset.alt;cap.textContent=b.dataset.cap;cnt.textContent=(i+1)+' / '+items.length}
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cnt=document.getElementById('lbCount'),ai=document.getElementById('lbAi'),i=0;
+  function show(n){i=(n+items.length)%items.length;var b=items[i];img.src=b.dataset.src;img.alt=b.dataset.alt;cap.textContent=b.dataset.cap;cnt.textContent=(i+1)+' / '+items.length;ai.hidden=!b.dataset.ai}
   function open(n){show(n);lb.classList.add('open');document.body.style.overflow='hidden'}
   function close(){lb.classList.remove('open');document.body.style.overflow=''}
   items.forEach(function(b,n){b.addEventListener('click',function(){open(n)})});
@@ -417,13 +433,19 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+AI_ATTR = ' data-ai="1"'
+AI_TAG = '<span class="ai-tag">AI enhanced</span>'
+
+
 def gallery_items(entries, start):
     out = []
-    for n, (f, cap, alt) in enumerate(entries):
+    for n, ent in enumerate(entries):
+        f, cap, alt = ent[:3]
+        ai = len(ent) > 3 and ent[3]
         src = f"{U}/{f}"
         out.append(
-            f'<figure class="g-item"><button type="button" class="g-btn" data-src="{src}" data-cap="{esc(cap)}" data-alt="{esc(alt)}" aria-label="View larger: {esc(cap)}">'
-            f'<img src="{src}" alt="{esc(alt)}" loading="lazy" decoding="async"></button>'
+            f'<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="{src}" data-cap="{esc(cap)}" data-alt="{esc(alt)}"{AI_ATTR if ai else ""} aria-label="View larger: {esc(cap)}">'
+            f'<img src="{src}" alt="{esc(alt)}" loading="lazy" decoding="async"></button>{AI_TAG if ai else ""}</div>'
             f'<figcaption>{esc(cap)}</figcaption></figure>'
         )
     return "\n".join(out)
@@ -433,7 +455,7 @@ def build(key):
     p = PAGES[key]
     url = f"{SITE}/{p['slug']}/"
     mailto = f"mailto:{EMAIL}?subject={p['subject'].replace(' ', '%20').replace('&', '%26')}"
-    og_img = SITE + p["hero"]
+    og_img = SITE + p.get("og", p["hero"])
 
     cur = ' aria-current="page"'
     switch = "".join(
@@ -449,7 +471,7 @@ def build(key):
     for k in p["others"]:
         o = PAGES[k]
         others += (
-            f'<a class="o-card" href="/{o["slug"]}/"><img src="{o["thumb"]}" alt="" loading="lazy" decoding="async">'
+            f'<a class="o-card" href="/{o["slug"]}/"><div class="o-img"><img src="{o["thumb"]}" alt="" loading="lazy" decoding="async">{AI_TAG if o.get("thumb_ai") else ""}</div>'
             f'<div class="o-body"><div class="o-label">{"Units 218 + 220" if k == "218-220" else "Unit " + k} &middot; East Cota Street</div>'
             f'<div class="o-sf">{SF_LINE[k]}</div><div class="o-blurb">{esc(o["blurb"])}</div><span class="o-link">View {"combined space" if k == "218-220" else "Unit " + k} &rarr;</span></div></a>'
         )
@@ -498,6 +520,7 @@ def build(key):
 
 <!-- HERO -->
 <header class="hero" style="background-image:url('{p['hero']}');background-position:{p['hero_pos']};">
+    {'<span class="hero-ai">AI enhanced</span>' if p.get('hero_ai') else ''}
     <div class="hero-content">
         <p class="hero-eyebrow">Available for Lease &middot; Lagoon District, Santa Barbara</p>
         <h1 class="hero-title">{esc(p['h1_num'])} <em>East Cota</em></h1>
@@ -526,9 +549,16 @@ def build(key):
             <div class="rule"></div>
             <div class="body-copy">{overview}</div>
         </div>
-        <div class="highlights">
-            <h3>Highlights</h3>
-            <ul>{highlights}</ul>
+        <div class="side">
+            <div class="highlights">
+                <h3>Highlights</h3>
+                <ul>{highlights}</ul>
+            </div>
+            <div class="lease-note">
+                <h3>Lease Terms</h3>
+                <p><strong>Triple net (NNN) lease.</strong> NNN charges cover the property's operating costs, including taxes, insurance and common-area maintenance. Utilities, gas and cable are not included and are billed separately.</p>
+                <p>Lease rate available upon request &mdash; <a href="{mailto}">ask us</a>.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -611,7 +641,7 @@ def build(key):
 <!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <div class="lb-top"><span class="lb-cap" id="lbCap"></span><div class="lb-right"><span class="lb-count" id="lbCount"></span><button class="lb-close" id="lbClose" aria-label="Close">&times;</button></div></div>
-    <div class="lb-stage"><button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button><img id="lbImg" src="" alt=""><button class="lb-arrow lb-next" id="lbNext" aria-label="Next photo">&#8250;</button></div>
+    <div class="lb-stage"><button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button><div class="lb-fig"><img id="lbImg" src="" alt=""><span class="lb-ai" id="lbAi" hidden>AI enhanced</span></div><button class="lb-arrow lb-next" id="lbNext" aria-label="Next photo">&#8250;</button></div>
 </div>
 
 <script>{JS}</script>

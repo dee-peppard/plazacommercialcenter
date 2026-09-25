@@ -80,7 +80,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
 .body-copy{font-size:19px;font-weight:300;line-height:1.8;color:var(--dark-mid)}
 .body-copy p+p{margin-top:20px}
+.side{display:flex;flex-direction:column;gap:3px}
 .highlights{background:var(--warm-white);padding:36px 34px;border-top:3px solid var(--terracotta)}
+.lease-note{background:var(--dark);padding:30px 34px}
+.lease-note h3{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terra-light);margin-bottom:14px}
+.lease-note p{font-size:16px;font-weight:300;line-height:1.65;color:rgba(246,241,233,.78)}
+.lease-note p+p{margin-top:12px}
+.lease-note strong{font-weight:500;color:var(--cream)}
+.lease-note a{color:var(--terra-light);text-underline-offset:3px}
 .highlights h3{font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terracotta);margin-bottom:20px}
 .highlights ul{list-style:none;display:flex;flex-direction:column;gap:14px}
 .highlights li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:17px;font-weight:300;line-height:1.5;color:var(--dark-mid)}
@@ -93,6 +100,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .gallery .note{font-size:14px;font-weight:300;color:rgba(58,53,48,.65);margin:-4px 0 18px}
 .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .g-item{margin:0}
+.g-frame{position:relative}
+.ai-tag{position:absolute;right:8px;bottom:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:5px 9px;pointer-events:none}
+.hero-ai{position:absolute;right:20px;bottom:20px;z-index:1;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:5px 9px}
+.o-img{position:relative}
 .g-btn{display:block;width:100%;padding:0;border:none;background:var(--cream-dark);cursor:zoom-in;aspect-ratio:3/2;overflow:hidden}
 .g-btn img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
 .g-btn:hover img,.g-btn:focus-visible img{transform:scale(1.03)}
@@ -163,7 +174,9 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
 .lb-close{background:none;border:none;color:rgba(246,241,233,.45);font-size:32px;line-height:1;cursor:pointer;padding:0 4px}
 .lb-close:hover{color:var(--cream)}
 .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px 88px;min-height:0}
-.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;display:block;user-select:none}
+.lb-fig{position:relative;display:flex;max-width:100%}
+.lb-stage img{max-width:100%;max-height:calc(100vh - 170px);object-fit:contain;display:block;user-select:none}
+.lb-ai{position:absolute;right:10px;bottom:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,233,.95);background:rgba(18,16,14,.75);padding:6px 10px;pointer-events:none}
 .lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(246,241,233,.35);font-size:64px;font-weight:200;line-height:1;cursor:pointer;padding:16px 20px;font-family:'Cormorant Garamond',serif}
 .lb-arrow:hover{color:rgba(246,241,233,.9)}
 .lb-prev{left:0}.lb-next{right:0}
@@ -192,6 +205,8 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
   .body-copy{font-size:16px;line-height:1.75}
   .highlights{padding:28px 22px}
   .highlights li{font-size:15px}
+  .lease-note{padding:26px 22px}
+  .lb-stage img{max-height:calc(100vh - 150px)}
   .g-grid{grid-template-columns:1fr 1fr;gap:10px}
   .g-item figcaption{font-size:12.5px}
   .plan-facts{grid-template-columns:1fr 1fr}
@@ -232,6 +247,7 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
 
 <!-- HERO -->
 <header class="hero" style="background-image:url('/units/220/220-interior-3.jpg');background-position:center 55%;">
+    
     <div class="hero-content">
         <p class="hero-eyebrow">Available for Lease &middot; Lagoon District, Santa Barbara</p>
         <h1 class="hero-title">218–220 <em>East Cota</em></h1>
@@ -260,9 +276,16 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
             <div class="rule"></div>
             <div class="body-copy"><p>Units 218 and 220 sit side by side on East Cota Street and can be leased together as 4,747 SF of contiguous space — 1,894 SF plus 2,853 SF — under 14-foot-plus exposed wood beam ceilings with brick walls and concrete floors.</p><p>Each unit has its own large 10′ roll-up door and two bathrooms, and Unit 220 has its own street entrance. Unit 218 is available October 1st and Unit 220 is available with 30–60 days notice. Either unit can also be leased on its own. The lease is NNN (triple net), and private off-street parking is included.</p></div>
         </div>
-        <div class="highlights">
-            <h3>Highlights</h3>
-            <ul><li>4,747 SF contiguous (1,894 SF + 2,853 SF)</li><li>14-ft+ exposed wood beam ceilings</li><li>Two large 10′ roll-up doors (one per unit)</li><li>Two bathrooms in each unit</li><li>Concrete floors</li><li>Private off-street parking included</li><li>NNN / Triple Net lease</li></ul>
+        <div class="side">
+            <div class="highlights">
+                <h3>Highlights</h3>
+                <ul><li>4,747 SF contiguous (1,894 SF + 2,853 SF)</li><li>14-ft+ exposed wood beam ceilings</li><li>Two large 10′ roll-up doors (one per unit)</li><li>Two bathrooms in each unit</li><li>Concrete floors</li><li>Private off-street parking included</li><li>NNN / Triple Net lease</li></ul>
+            </div>
+            <div class="lease-note">
+                <h3>Lease Terms</h3>
+                <p><strong>Triple net (NNN) lease.</strong> NNN charges cover the property's operating costs, including taxes, insurance and common-area maintenance. Utilities, gas and cable are not included and are billed separately.</p>
+                <p>Lease rate available upon request &mdash; <a href="mailto:management@plazacommercialcenter.com?subject=Leasing%20Inquiry:%20Units%20218%20%26%20220">ask us</a>.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -274,21 +297,21 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
     <div class="rule"></div>
     <h3 class="sub">The Space</h3>
     <div class="g-grid">
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/218/218-A.jpg" data-cap="Unit 218 — interior view" data-alt="Interior of Unit 218 with exposed beams, brick wall and concrete floor" aria-label="View larger: Unit 218 — interior view"><img src="/units/218/218-A.jpg" alt="Interior of Unit 218 with exposed beams, brick wall and concrete floor" loading="lazy" decoding="async"></button><figcaption>Unit 218 — interior view</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/218/218-B.jpg" data-cap="Unit 218 — toward the roll-up door" data-alt="Interior of Unit 218 looking toward the open roll-up door" aria-label="View larger: Unit 218 — toward the roll-up door"><img src="/units/218/218-B.jpg" alt="Interior of Unit 218 looking toward the open roll-up door" loading="lazy" decoding="async"></button><figcaption>Unit 218 — toward the roll-up door</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-interior-1.jpg" data-cap="Unit 220 — open floor and glass entry" data-alt="Unit 220 open floor with brick wall and glass entry door" aria-label="View larger: Unit 220 — open floor and glass entry"><img src="/units/220/220-interior-1.jpg" alt="Unit 220 open floor with brick wall and glass entry door" loading="lazy" decoding="async"></button><figcaption>Unit 220 — open floor and glass entry</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-interior-2.jpg" data-cap="Unit 220 — exposed beam ceilings" data-alt="Unit 220 interior with exposed wood beam ceilings and brick back wall" aria-label="View larger: Unit 220 — exposed beam ceilings"><img src="/units/220/220-interior-2.jpg" alt="Unit 220 interior with exposed wood beam ceilings and brick back wall" loading="lazy" decoding="async"></button><figcaption>Unit 220 — exposed beam ceilings</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-interior-3.jpg" data-cap="Unit 220 — open floor plan" data-alt="Unit 220 open concrete floor with brick wall" aria-label="View larger: Unit 220 — open floor plan"><img src="/units/220/220-interior-3.jpg" alt="Unit 220 open concrete floor with brick wall" loading="lazy" decoding="async"></button><figcaption>Unit 220 — open floor plan</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-Entrance-A.jpg" data-cap="Unit 220 — street entrance" data-alt="Brick exterior of Unit 220 with glass street entrance and accessible parking" aria-label="View larger: Unit 220 — street entrance"><img src="/units/220/220-Entrance-A.jpg" alt="Brick exterior of Unit 220 with glass street entrance and accessible parking" loading="lazy" decoding="async"></button><figcaption>Unit 220 — street entrance</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-Entrance-B.jpg" data-cap="Unit 220 — roll-up door &amp; parking" data-alt="Exterior roll-up door of Unit 220 beside the parking area" aria-label="View larger: Unit 220 — roll-up door &amp; parking"><img src="/units/220/220-Entrance-B.jpg" alt="Exterior roll-up door of Unit 220 beside the parking area" loading="lazy" decoding="async"></button><figcaption>Unit 220 — roll-up door &amp; parking</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/shared/218-220-BathroomFinish.jpg" data-cap="Bathroom finishes" data-alt="Bathroom with wood-framed mirror and vanity, shared finish for Units 218 and 220" aria-label="View larger: Bathroom finishes"><img src="/units/shared/218-220-BathroomFinish.jpg" alt="Bathroom with wood-framed mirror and vanity, shared finish for Units 218 and 220" loading="lazy" decoding="async"></button><figcaption>Bathroom finishes</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/218/218-A.jpg" data-cap="Unit 218 — interior view" data-alt="Interior of Unit 218 with exposed beams, brick wall and concrete floor" data-ai="1" aria-label="View larger: Unit 218 — interior view"><img src="/units/218/218-A.jpg" alt="Interior of Unit 218 with exposed beams, brick wall and concrete floor" loading="lazy" decoding="async"></button><span class="ai-tag">AI enhanced</span></div><figcaption>Unit 218 — interior view</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/218/218-B.jpg" data-cap="Unit 218 — toward the roll-up door" data-alt="Interior of Unit 218 looking toward the open roll-up door" data-ai="1" aria-label="View larger: Unit 218 — toward the roll-up door"><img src="/units/218/218-B.jpg" alt="Interior of Unit 218 looking toward the open roll-up door" loading="lazy" decoding="async"></button><span class="ai-tag">AI enhanced</span></div><figcaption>Unit 218 — toward the roll-up door</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-interior-1.jpg" data-cap="Unit 220 — open floor and glass entry" data-alt="Unit 220 open floor with brick wall and glass entry door" aria-label="View larger: Unit 220 — open floor and glass entry"><img src="/units/220/220-interior-1.jpg" alt="Unit 220 open floor with brick wall and glass entry door" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — open floor and glass entry</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-interior-2.jpg" data-cap="Unit 220 — exposed beam ceilings" data-alt="Unit 220 interior with exposed wood beam ceilings and brick back wall" aria-label="View larger: Unit 220 — exposed beam ceilings"><img src="/units/220/220-interior-2.jpg" alt="Unit 220 interior with exposed wood beam ceilings and brick back wall" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — exposed beam ceilings</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-interior-3.jpg" data-cap="Unit 220 — open floor plan" data-alt="Unit 220 open concrete floor with brick wall" aria-label="View larger: Unit 220 — open floor plan"><img src="/units/220/220-interior-3.jpg" alt="Unit 220 open concrete floor with brick wall" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — open floor plan</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-Entrance-A.jpg" data-cap="Unit 220 — street entrance" data-alt="Brick exterior of Unit 220 with glass street entrance and accessible parking" aria-label="View larger: Unit 220 — street entrance"><img src="/units/220/220-Entrance-A.jpg" alt="Brick exterior of Unit 220 with glass street entrance and accessible parking" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — street entrance</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-Entrance-B.jpg" data-cap="Unit 220 — roll-up door &amp; parking" data-alt="Exterior roll-up door of Unit 220 beside the parking area" aria-label="View larger: Unit 220 — roll-up door &amp; parking"><img src="/units/220/220-Entrance-B.jpg" alt="Exterior roll-up door of Unit 220 beside the parking area" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — roll-up door &amp; parking</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/shared/218-220-BathroomFinish.jpg" data-cap="Bathroom finishes" data-alt="Bathroom with wood-framed mirror and vanity, shared finish for Units 218 and 220" aria-label="View larger: Bathroom finishes"><img src="/units/shared/218-220-BathroomFinish.jpg" alt="Bathroom with wood-framed mirror and vanity, shared finish for Units 218 and 220" loading="lazy" decoding="async"></button></div><figcaption>Bathroom finishes</figcaption></figure>
     </div>
     <h3 class="sub">Concept Renderings</h3>
     <p class="note">Illustrative concepts of how the space could be built out &mdash; not photographs of completed tenant improvements.</p>
     <div class="g-grid">
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/218/218-Rendering.jpeg" data-cap="Unit 218 — design studio concept" data-alt="Concept rendering of Unit 218 as a design studio with a materials sample wall" aria-label="View larger: Unit 218 — design studio concept"><img src="/units/218/218-Rendering.jpeg" alt="Concept rendering of Unit 218 as a design studio with a materials sample wall" loading="lazy" decoding="async"></button><figcaption>Unit 218 — design studio concept</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-Rendering.jpeg" data-cap="Unit 220 — architecture studio concept" data-alt="Concept rendering of Unit 220 as an architecture studio with drafting tables and models" aria-label="View larger: Unit 220 — architecture studio concept"><img src="/units/220/220-Rendering.jpeg" alt="Concept rendering of Unit 220 as an architecture studio with drafting tables and models" loading="lazy" decoding="async"></button><figcaption>Unit 220 — architecture studio concept</figcaption></figure>
-<figure class="g-item"><button type="button" class="g-btn" data-src="/units/220/220-Rendering-Gallery.jpeg" data-cap="Unit 220 — gallery &amp; showroom concept" data-alt="Concept rendering of Unit 220 as a gallery and showroom with exhibition walls" aria-label="View larger: Unit 220 — gallery &amp; showroom concept"><img src="/units/220/220-Rendering-Gallery.jpeg" alt="Concept rendering of Unit 220 as a gallery and showroom with exhibition walls" loading="lazy" decoding="async"></button><figcaption>Unit 220 — gallery &amp; showroom concept</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/218/218-Rendering.jpeg" data-cap="Unit 218 — design studio concept" data-alt="Concept rendering of Unit 218 as a design studio with a materials sample wall" aria-label="View larger: Unit 218 — design studio concept"><img src="/units/218/218-Rendering.jpeg" alt="Concept rendering of Unit 218 as a design studio with a materials sample wall" loading="lazy" decoding="async"></button></div><figcaption>Unit 218 — design studio concept</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-Rendering.jpeg" data-cap="Unit 220 — architecture studio concept" data-alt="Concept rendering of Unit 220 as an architecture studio with drafting tables and models" aria-label="View larger: Unit 220 — architecture studio concept"><img src="/units/220/220-Rendering.jpeg" alt="Concept rendering of Unit 220 as an architecture studio with drafting tables and models" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — architecture studio concept</figcaption></figure>
+<figure class="g-item"><div class="g-frame"><button type="button" class="g-btn" data-src="/units/220/220-Rendering-Gallery.jpeg" data-cap="Unit 220 — gallery &amp; showroom concept" data-alt="Concept rendering of Unit 220 as a gallery and showroom with exhibition walls" aria-label="View larger: Unit 220 — gallery &amp; showroom concept"><img src="/units/220/220-Rendering-Gallery.jpeg" alt="Concept rendering of Unit 220 as a gallery and showroom with exhibition walls" loading="lazy" decoding="async"></button></div><figcaption>Unit 220 — gallery &amp; showroom concept</figcaption></figure>
     </div>
 </section>
 
@@ -315,7 +338,7 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
     <p class="eyebrow">Also Available</p>
     <h2 class="section-title">More space at the Plaza</h2>
     <div class="rule"></div>
-    <div class="others-grid"><a class="o-card" href="/210ecota/"><img src="/units/210/210-interior-5.jpg" alt="" loading="lazy" decoding="async"><div class="o-body"><div class="o-label">Unit 210 &middot; East Cota Street</div><div class="o-sf">2,300 SF</div><div class="o-blurb">Showroom or office · reception entry · conference room</div><span class="o-link">View Unit 210 &rarr;</span></div></a><a class="o-card" href="/218ecota/"><img src="/units/218/218-B.jpg" alt="" loading="lazy" decoding="async"><div class="o-body"><div class="o-label">Unit 218 &middot; East Cota Street</div><div class="o-sf">1,894 SF</div><div class="o-blurb">10′ roll-up door · exposed beams · can combine with 220</div><span class="o-link">View Unit 218 &rarr;</span></div></a><a class="o-card" href="/220ecota/"><img src="/units/220/220-interior-2.jpg" alt="" loading="lazy" decoding="async"><div class="o-body"><div class="o-label">Unit 220 &middot; East Cota Street</div><div class="o-sf">2,853 SF</div><div class="o-blurb">Largest suite · own street entrance · 10′ roll-up door</div><span class="o-link">View Unit 220 &rarr;</span></div></a></div>
+    <div class="others-grid"><a class="o-card" href="/210ecota/"><div class="o-img"><img src="/units/210/210-interior-5.jpg" alt="" loading="lazy" decoding="async"></div><div class="o-body"><div class="o-label">Unit 210 &middot; East Cota Street</div><div class="o-sf">2,300 SF</div><div class="o-blurb">Showroom or office · reception entry · conference room</div><span class="o-link">View Unit 210 &rarr;</span></div></a><a class="o-card" href="/218ecota/"><div class="o-img"><img src="/units/218/218-B.jpg" alt="" loading="lazy" decoding="async"><span class="ai-tag">AI enhanced</span></div><div class="o-body"><div class="o-label">Unit 218 &middot; East Cota Street</div><div class="o-sf">1,894 SF</div><div class="o-blurb">10′ roll-up door · exposed beams · can combine with 220</div><span class="o-link">View Unit 218 &rarr;</span></div></a><a class="o-card" href="/220ecota/"><div class="o-img"><img src="/units/220/220-interior-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="o-body"><div class="o-label">Unit 220 &middot; East Cota Street</div><div class="o-sf">2,853 SF</div><div class="o-blurb">Largest suite · own street entrance · 10′ roll-up door</div><span class="o-link">View Unit 220 &rarr;</span></div></a></div>
 </section>
 
 <!-- EXPLORE -->
@@ -354,7 +377,7 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
 <!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <div class="lb-top"><span class="lb-cap" id="lbCap"></span><div class="lb-right"><span class="lb-count" id="lbCount"></span><button class="lb-close" id="lbClose" aria-label="Close">&times;</button></div></div>
-    <div class="lb-stage"><button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button><img id="lbImg" src="" alt=""><button class="lb-arrow lb-next" id="lbNext" aria-label="Next photo">&#8250;</button></div>
+    <div class="lb-stage"><button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button><div class="lb-fig"><img id="lbImg" src="" alt=""><span class="lb-ai" id="lbAi" hidden>AI enhanced</span></div><button class="lb-arrow lb-next" id="lbNext" aria-label="Next photo">&#8250;</button></div>
 </div>
 
 <script>
@@ -363,8 +386,8 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
   document.querySelectorAll('[data-menu-open]').forEach(function(b){b.addEventListener('click',function(){menu.classList.add('open')})});
   document.querySelectorAll('[data-menu-close]').forEach(function(b){b.addEventListener('click',function(){menu.classList.remove('open')})});
   var items=[].slice.call(document.querySelectorAll('.g-btn'));
-  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cnt=document.getElementById('lbCount'),i=0;
-  function show(n){i=(n+items.length)%items.length;var b=items[i];img.src=b.dataset.src;img.alt=b.dataset.alt;cap.textContent=b.dataset.cap;cnt.textContent=(i+1)+' / '+items.length}
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cnt=document.getElementById('lbCount'),ai=document.getElementById('lbAi'),i=0;
+  function show(n){i=(n+items.length)%items.length;var b=items[i];img.src=b.dataset.src;img.alt=b.dataset.alt;cap.textContent=b.dataset.cap;cnt.textContent=(i+1)+' / '+items.length;ai.hidden=!b.dataset.ai}
   function open(n){show(n);lb.classList.add('open');document.body.style.overflow='hidden'}
   function close(){lb.classList.remove('open');document.body.style.overflow=''}
   items.forEach(function(b,n){b.addEventListener('click',function(){open(n)})});

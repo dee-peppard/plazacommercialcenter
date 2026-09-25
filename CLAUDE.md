@@ -26,7 +26,7 @@ As of September 2026 this folder was reorganized from ~50 flat files at the root
 | `design/` | Mood board images used in `design-community.html`'s "The Palette" section |
 | `210ecota/`, `218ecota/`, `220ecota/`, `218-220ecota/` | One `index.html` each — the per-unit landing pages (see "Unit landing pages" below). Served at `/210ecota`, `/218ecota`, `/220ecota`, `/218-220ecota` |
 | `tools/` | `build_unit_pages.py` — generator for the four unit landing pages |
-| root (`index.html`, `design-community.html`, `email-signature.html`, `CLAUDE.md`) | The pages themselves and this doc |
+| root (`index.html`, `design-community.html`, `CLAUDE.md`) | The pages themselves and this doc |
 
 **File naming inside the new folders was also cleaned up** — a few files that had spaces in their names (e.g. the old `210 Rendering-studio.jpeg`, `218 Rendering.jpeg`) were renamed to use hyphens instead (`210-Rendering-studio.jpeg`, `218-Rendering.jpeg`) so paths never need `%20` encoding. If you add a new file, keep using hyphens instead of spaces for the same reason.
 
@@ -40,7 +40,6 @@ That sibling folder (next to `Plaza Website/`, not inside it) holds: duplicate/u
 |---|---|
 | `index.html` | Homepage — the main site, live at the root domain |
 | `design-community.html` | Secondary landing page pitching the complex to designers/architects/contractors/showrooms |
-| `email-signature.html` | Standalone HTML email signature for management team members — not linked from the site nav, opened directly in a browser and copy/pasted into an email client |
 | `CNAME` | GitHub Pages custom domain config — contains `www.plazacommercialcenter.com`. Required for the custom domain to keep working; never delete it |
 | `.gitignore` | Just excludes `.DS_Store` (macOS Finder metadata) from being tracked |
 
@@ -77,7 +76,6 @@ That sibling folder (next to `Plaza Website/`, not inside it) holds: duplicate/u
 | Homepage | `index.html` | Promo banner (links to Design Community) → Nav → Hero → Stats → About → Available Units → All Units → Neighborhood → Contact → Footer → gallery lightbox |
 | Design Community | `design-community.html` | Hero → Palette (mood boards) → Who's Already Here (field types) → Picture It (concept renderings) → Available Now (static teaser) → Meet Your Future Neighbors (real tenants) → Final CTA → Footer |
 | Unit landing pages (4) | `210ecota/index.html`, `218ecota/index.html`, `220ecota/index.html`, `218-220ecota/index.html` | Per-unit leasing pages, added Sept 2026. Not linked from the main site nav (linked to from each other, and they link back to `/` and `/design-community.html`) |
-| Email signature | `email-signature.html` | Not part of site nav — a standalone table-based HTML signature template with copy/paste instructions baked into the page itself |
 
 Nav order (`index.html` and `design-community.html`, identical): **Available → All Units → Neighborhood → Design Community → Contact**. `design-community.html`'s internal section links point back to `index.html` (e.g. `index.html#available`) since those sections don't exist on that page.
 
@@ -91,8 +89,9 @@ Added September 2026 as standalone leasing pages for each available unit (plus o
 - **Availability text lives in the `PAGES` dict** (`avail`, `avail_short`, `stats`, and the sentences in `overview`/`tagline`). The "Also available" cards deliberately show only size and a blurb — no status — so a status change touches fewer places. When a unit's status changes, update it in the generator (unit's own page **and** the combined 218-220 page for 218/220), regenerate, *and* still update `index.html` and `design-community.html` as described under "Current unit status".
 - **Meta/SEO**: each page has its own `<title>`, description, canonical URL (`https://www.plazacommercialcenter.com/<slug>/`) and Open Graph tags (hero image as `og:image`).
 - CTAs follow the site convention: `mailto:` links with a pre-filled subject (`Leasing Inquiry: Unit 210`, `Leasing Inquiry: Units 218 & 220`).
-- **Image provenance caveat:** `units/218/218-A.jpg` and `218-B.jpg` carry a Gemini sparkle watermark in the bottom-right corner, i.e. they are AI-generated/edited, not straight photographs. On the unit pages they are captioned neutrally ("Interior view") rather than "photo". Do not crop the watermark out to make them pass as photos; confirm with the user how they should be labeled.
-- `units/210/210ECotaFloorPlan.png` is the *previous tenant's furnished layout* (it says "Welcome to AV!"), captioned "Existing furnished layout shown for reference".
+- **AI-enhanced images are labeled.** `units/218/218-A.jpg` and `218-B.jpg` carry a Gemini sparkle watermark in the bottom-right corner, i.e. they are AI-generated/edited rather than straight photographs. Per the owner's call, every place they appear shows a small "AI enhanced" tag in the image's bottom-right corner (mirroring the baked-in "this is a rendering" text on the concept renderings): unit-page gallery thumbnails, the unit-page lightbox, the 218 hero, the 218 card in "Also available", and the main site's `openGallery` lightbox (the `AI_ENHANCED` array near the top of `index.html`'s script). In the generator, flag an image with a trailing `True` in its `PAGES` photo tuple (or `hero_ai` / `thumb_ai`). **Any new AI-generated/edited image must be added to both places.** Do not crop the watermark out. The 218 page's `og:image` deliberately uses the self-labeled rendering instead of an AI-enhanced photo.
+- `units/210/210ECotaFloorPlan.png` is the *previous tenant's furnished layout* (it says "Welcome to AV!"), captioned "Existing furnished layout shown for reference". The owner is fine leaving it as is for now, and may supply a clean plan later.
+- **Lease terms wording (owner-approved):** unit pages say the lease is triple net (NNN), that NNN charges cover the property's operating costs (taxes, insurance, common-area maintenance), and that utilities, gas and cable are not included and are billed separately. **No lease rate is published anywhere** — the pages say the rate is available upon request (mailto link). Don't add rates unless asked. (The main site's cards still just say "NNN / Triple Net lease" with no utilities note.)
 
 ## Current unit status
 
@@ -122,12 +121,13 @@ Units 218 + 220 can combine for 4,747sf contiguous. All leases are NNN/Triple Ne
 
 ## Known open items / things a future agent should know
 
+- **`email-signature.html` is no longer in this folder** (a standalone HTML email signature for Stephanie McGowan, Management Team, that used to live here; it was never tracked in git or published). It disappeared between Sept 13 and 14, 2026 without being moved by an agent, and no copy could be found on disk. Don't assume it exists; ask the user before recreating it.
+- **Mobile-menu bug fixed (Sept 2026):** `index.html` had stray backslashes (`\!important`, `<\!--`) from a shell-escaping accident that broke the mobile menu's "Schedule a Tour" button styling and left a stray comment rendering as text. Removed. Watch for it if editing files through shell heredocs.
 - **This folder is a git repo now (since Sept 14, 2026) — use `git add`/`commit`/`push`, not GitHub's web upload page.** Before that date it was upload-only with no git history, which is exactly what caused a cleanup headache once (see the folder-reorg note above): the web uploader only adds/updates, it never deletes, so a local reorg silently left ~50 stale files on GitHub until they were found and manually removed via a fresh clone + rsync mirror + commit. That risk goes away now that this folder tracks the remote properly — a normal `git push` correctly reflects deletions and renames.
 - **`gh` (GitHub CLI) is installed at `~/.local/bin/gh`, not the system PATH** — prepend `export PATH="$HOME/.local/bin:$PATH"` before calling it, or use the full path. Auth token lives in the macOS keychain; check with `gh auth status`.
 - **GitHub still rejects individual files over 25MB via its API/web layers** (this is why the `Plaza Archive (unused originals)/` sibling folder — see above — stays outside the repo; it's not referenced by any page and its largest files pushed toward that ceiling). A plain `git push` doesn't have that 25MB wall (git's own soft/hard limits are much higher, ~50-100MB), so this is now unlikely to resurface, but if a push is ever rejected for size, check `find . -type f -size +20M` inside `Plaza Website/` for the offending file.
 - **This site's CTA convention is `mailto:` links, not a contact form** — this is a deliberate difference from other sites in this portfolio, not an inconsistency to "fix."
 - **`design-community.html` duplicates unit availability as static text.** Any availability change on `index.html` needs a matching manual edit there.
-- **Existing bug in `index.html` (not yet fixed):** `.mobile-menu-cta` uses `\!important` (stray backslash from a shell-escaping accident) so those declarations are invalid CSS and the mobile-menu "Schedule a Tour" button loses its styling; and the `<\!-- MOBILE MENU -->` comment is malformed and renders as stray text behind the fixed banner. `design-community.html` has the same `\!important` issue. The new unit pages don't have it.
 - **Concept renderings on `design-community.html` are AI-generated/illustrative**, not photos of actual completed build-outs — labeled "Concept Rendering" in their captions. Don't present them as real installed tenant improvements.
 - **The phone number `(805) 681-2878` is live and current** on both `index.html`'s contact section and `design-community.html`'s final CTA.
 - **This project is unrelated to the Kora Commercial LLC site** — separate business, separate design system, separate folder. Don't cross-reference asset paths, brand colors, or component conventions between the two; they happen to share an agent history, not a codebase.

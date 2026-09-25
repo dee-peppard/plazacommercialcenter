@@ -716,15 +716,15 @@
             margin-top: 40px;
             display: inline-block;
             background: var(--terracotta);
-            color: #fff \!important;
-            font-family: 'DM Sans', sans-serif \!important;
-            font-size: 12px \!important;
-            font-weight: 500 \!important;
-            letter-spacing: 0.18em \!important;
+            color: #fff !important;
+            font-family: 'DM Sans', sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.18em !important;
             text-transform: uppercase;
-            padding: 16px 36px \!important;
-            border-bottom: none \!important;
-            width: auto \!important;
+            padding: 16px 36px !important;
+            border-bottom: none !important;
+            width: auto !important;
         }
 
         /* ─── RESPONSIVE — TABLET (641–960px) ───── */
@@ -793,7 +793,7 @@
             .nb-card { padding: 18px 20px; }
 
             .contact-body { font-size: 17px; }
-            .cc-val { font-size: 16px \!important; word-break: break-word; overflow-wrap: break-word; }
+            .cc-val { font-size: 16px !important; word-break: break-word; overflow-wrap: break-word; }
             .contact-card { padding: 22px 20px; }
             .contact-section { overflow: hidden; }
 
@@ -910,6 +910,21 @@
         .gallery-next { right: 0; }
         .gallery-arrow.hidden { opacity: 0; pointer-events: none; }
 
+        .gallery-fig { position: relative; display: flex; max-width: 100%; }
+        .gallery-fig img { max-height: calc(100vh - 210px); }
+        .gallery-ai-tag {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(246,241,233,0.92);
+            background: rgba(18,16,14,0.72);
+            padding: 6px 10px;
+            pointer-events: none;
+        }
+
         .gallery-bottombar {
             display: flex;
             justify-content: center;
@@ -985,7 +1000,7 @@
     </button>
 </nav>
 
-<\!-- ══ MOBILE MENU ══════════════════════════════ -->
+<!-- ══ MOBILE MENU ══════════════════════════════ -->
 <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" onclick="document.getElementById('mobileMenu').classList.remove('open')" aria-label="Close menu">&times;</button>
     <a href="#available" onclick="document.getElementById('mobileMenu').classList.remove('open')">Available</a>
@@ -1383,7 +1398,7 @@
     </div>
     <div class="gallery-img-area">
         <button class="gallery-arrow gallery-prev hidden" id="galleryPrev">&#8249;</button>
-        <img id="galleryImg" src="" alt="">
+        <div class="gallery-fig"><img id="galleryImg" src="" alt=""><span class="gallery-ai-tag" id="galleryAiTag" hidden>AI enhanced</span></div>
         <button class="gallery-arrow gallery-next" id="galleryNext">&#8250;</button>
     </div>
     <div class="gallery-bottombar">
@@ -1412,6 +1427,7 @@ const UNITS = {
 };
 
 let gUnit = null, gIdx = 0;
+const AI_ENHANCED = ['units/218/218-A.jpg','units/218/218-B.jpg'];
 
 function openGallery(id) {
     gUnit = UNITS[id]; gIdx = 0;
@@ -1442,6 +1458,7 @@ function buildDots() {
 
 function updateGallery() {
     document.getElementById('galleryImg').src = gUnit.photos[gIdx];
+    document.getElementById('galleryAiTag').hidden = AI_ENHANCED.indexOf(gUnit.photos[gIdx]) === -1;
     document.getElementById('galleryCounter').textContent = (gIdx + 1) + ' / ' + gUnit.photos.length;
     document.getElementById('galleryPrev').classList.toggle('hidden', gIdx === 0);
     document.getElementById('galleryNext').classList.toggle('hidden', gIdx === gUnit.photos.length - 1);
