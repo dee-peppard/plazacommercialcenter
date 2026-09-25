@@ -23,7 +23,7 @@ PAGES = {
         tagline="A 2,300 SF single-story suite behind one of the Plaza's signature arched brick entrances — with 14-foot ceilings, exposed wood beams and signage visible from East Cota Street.",
         hero=f"{U}/210/210Rendering.jpeg", hero_pos="center 50%", hero_tag="Concept rendering",
         og=f"{U}/210/210-interior-1.jpg",
-        thumb=f"{U}/210/210-interior-5.jpg",
+        thumb=f"{U}/210/210Rendering.jpeg", thumb_tag="Concept rendering",
         blurb="Showroom or office · reception entry · conference room",
         overview=[
             "Unit 210 is a 2,300 SF single-story suite on East Cota Street, set behind one of the Plaza's signature arched brick entrances. Fourteen-foot ceilings and exposed wood beams give the open floor the volume of a studio, and signage visible from East Cota Street gives your business real street presence.",
@@ -67,7 +67,7 @@ PAGES = {
         tagline="A 1,894 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a brick wall and a large 10′ roll-up door — available October 1st.",
         hero=f"{U}/218/218-B.jpg", hero_pos="center 50%", hero_tag="AI enhanced",
         og=f"{U}/218/218-Rendering.jpeg",
-        thumb=f"{U}/218/218-B.jpg", thumb_ai=True,
+        thumb=f"{U}/218/218-B.jpg", thumb_tag="AI enhanced",
         blurb="10′ roll-up door · exposed beams · can combine with 220",
         overview=[
             "Unit 218 is a 1,894 SF single-story suite on East Cota Street with 14-foot-plus exposed wood beam ceilings, brick walls, concrete floors and a large 10′ roll-up door. It has two bathrooms and an open floor that can be set up as a studio, shop, showroom or office.",
@@ -93,7 +93,7 @@ PAGES = {
         ],
         plan="shared/218-220-floorplan.png", plan_alt="Floor plan showing Unit 218 (1,894 SF) above Unit 220 (2,853 SF) as 4,747 SF of contiguous space",
         plan_title="Unit 218 Floor Plan",
-        plan_text="Unit 218 (1,894 SF) is the upper suite on this plan, shown with neighboring Unit 220 (2,853 SF) — together 4,747 SF of contiguous space. The 10′ roll-up door is on the right wall.",
+        plan_text="Unit 218 (1,894 SF) is the upper suite on this plan, shown with neighboring Unit 220 (2,853 SF) — together 4,747 SF of contiguous space.",
         plan_facts=[("Size", "1,894 SF"), ("Roll-up door", "10′ door"), ("Bathrooms", "2"), ("Lease", "NNN / Triple Net")],
         plan_download="218220ecota_floorplan.png", plan_download_name="Units-218-220-East-Cota-Floor-Plan.png",
         others=["210", "220", "218-220"],
@@ -104,12 +104,12 @@ PAGES = {
         subject="Leasing Inquiry: Unit 220",
         title="220 East Cota Street — 2,853 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 220 at Plaza Commercial Center: 2,853 SF of flex space in Santa Barbara's Lagoon District with 14-ft+ exposed wood beam ceilings, a 10-ft roll-up door and its own street entrance. NNN lease.",
-        tagline="Our largest available suite at 2,853 SF — 14-foot-plus exposed wood beam ceilings, a large 10′ roll-up door and its own street entrance.",
+        tagline="A 2,853 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a large 10′ roll-up door and its own street entrance.",
         hero=f"{U}/220/220-interior-2.jpg", hero_pos="center 60%",
         thumb=f"{U}/220/220-interior-2.jpg",
-        blurb="Largest suite · own street entrance · 10′ roll-up door",
+        blurb="Own street entrance · 10′ roll-up door · can combine with 218",
         overview=[
-            "Unit 220 is the largest of the Plaza's available suites at 2,853 SF, with 14-foot-plus exposed wood beam ceilings, a brick back wall, concrete floors, a large 10′ roll-up door and its own street entrance. It's move-in ready with two bathrooms.",
+            "Unit 220 is a 2,853 SF single-story suite on East Cota Street with 14-foot-plus exposed wood beam ceilings, a brick back wall, concrete floors, a large 10′ roll-up door and its own street entrance. It's move-in ready with two bathrooms.",
             "Unit 220 is available with 30–60 days notice. It can also be leased together with neighboring Unit 218 for 4,747 SF of contiguous space. The lease is NNN (triple net), and private off-street parking is included.",
         ],
         highlights=[
@@ -136,7 +136,7 @@ PAGES = {
         ],
         plan="shared/218-220-floorplan.png", plan_alt="Floor plan showing Unit 220 (2,853 SF) below Unit 218 (1,894 SF) as 4,747 SF of contiguous space",
         plan_title="Unit 220 Floor Plan",
-        plan_text="Unit 220 (2,853 SF) is the lower suite on this plan, shown with neighboring Unit 218 (1,894 SF) — together 4,747 SF of contiguous space. Roll-up door on the right wall; street entrance at the lower left.",
+        plan_text="Unit 220 (2,853 SF) is the lower suite on this plan, shown with neighboring Unit 218 (1,894 SF) — together 4,747 SF of contiguous space.",
         plan_facts=[("Size", "2,853 SF"), ("Roll-up door", "10′ door"), ("Bathrooms", "2"), ("Lease", "NNN / Triple Net")],
         plan_download="218220ecota_floorplan.png", plan_download_name="Units-218-220-East-Cota-Floor-Plan.png",
         others=["210", "218", "218-220"],
@@ -147,7 +147,7 @@ PAGES = {
         subject="Leasing Inquiry: Units 218 & 220",
         title="218–220 East Cota Street — 4,747 SF Contiguous Commercial Space | Plaza Commercial Center",
         desc="Units 218 and 220 at Plaza Commercial Center combine for 4,747 SF of contiguous flex space in Santa Barbara's Lagoon District — 14-ft+ exposed wood beam ceilings, two 10-ft roll-up doors, private parking. NNN lease.",
-        tagline="Two adjoining suites, one 4,747 SF space — 14-foot-plus exposed wood beam ceilings, two 10′ roll-up doors and room to build out a full studio, showroom or headquarters.",
+        tagline="4,747 SF of space — 14-foot-plus exposed wood beam ceilings, two 10′ roll-up doors and room to build out a full studio, showroom or headquarters.",
         hero=f"{U}/220/220-interior-3.jpg", hero_pos="center 55%",
         thumb=f"{U}/220/220-interior-3.jpg",
         blurb="4,747 SF contiguous · Units 218 + 220 together",
@@ -470,8 +470,9 @@ def build(key):
     others = ""
     for k in p["others"]:
         o = PAGES[k]
+        thumb_tag = '<span class="ai-tag">%s</span>' % o["thumb_tag"] if o.get("thumb_tag") else ""
         others += (
-            f'<a class="o-card" href="/{o["slug"]}/"><div class="o-img"><img src="{o["thumb"]}" alt="" loading="lazy" decoding="async">{AI_TAG if o.get("thumb_ai") else ""}</div>'
+            f'<a class="o-card" href="/{o["slug"]}/"><div class="o-img"><img src="{o["thumb"]}" alt="" loading="lazy" decoding="async">{thumb_tag}</div>'
             f'<div class="o-body"><div class="o-label">{"Units 218 + 220" if k == "218-220" else "Unit " + k} &middot; East Cota Street</div>'
             f'<div class="o-sf">{SF_LINE[k]}</div><div class="o-blurb">{esc(o["blurb"])}</div><span class="o-link">View {"combined space" if k == "218-220" else "Unit " + k} &rarr;</span></div></a>'
         )
@@ -610,7 +611,7 @@ def build(key):
     <h2 class="section-title">Plaza Commercial Center</h2>
     <div class="rule"></div>
     <div class="explore-grid">
-        <a class="x-card" href="/"><h3>The Main Site</h3><p>The full property overview &mdash; all 15 units, the Lagoon District neighborhood and everything currently available.</p><span>Visit plazacommercialcenter.com &rarr;</span></a>
+        <a class="x-card" href="/"><h3>Explore the Plaza</h3><p>The full property overview &mdash; all 15 units, the Lagoon District neighborhood and everything currently available.</p><span>Visit plazacommercialcenter.com &rarr;</span></a>
         <a class="x-card" href="/design-community.html"><h3>Design Community</h3><p>Meet the architects, showrooms and makers already at the Plaza, and see concept renderings for the available units.</p><span>See who's here &rarr;</span></a>
     </div>
 </section>
