@@ -34,8 +34,8 @@
         }
 
         /* ─── PROMO BANNER ────────────────────────── */
+        .site-top { position: fixed; top: 0; left: 0; right: 0; z-index: 110; }
         .promo-banner {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 110;
             display: flex; align-items: center; justify-content: center;
             background: var(--terracotta); color: #fff; text-decoration: none;
             padding: 13px 20px; text-align: center;
@@ -47,9 +47,6 @@
 
         /* ─── NAVIGATION ─────────────────────────── */
         nav {
-            position: fixed;
-            top: 44px; left: 0; right: 0;
-            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -737,7 +734,7 @@
         /* ─── RESPONSIVE — ALL MOBILE (≤960px) ──── */
         @media (max-width: 960px) {
             .promo-banner { font-size: 12px; padding: 11px 16px; }
-            nav { padding: 18px 24px; top: 40px; }
+            nav { padding: 18px 24px; }
             .nav-links { display: none; }
             .nav-hamburger { display: flex; }
 
@@ -982,6 +979,7 @@
 <!-- ══════════════════════════════════════════════
      PROMO BANNER
 ══════════════════════════════════════════════ -->
+<div class="site-top">
 <a href="design-community.html" class="promo-banner">Now home to a growing design community — architects, showrooms &amp; makers.<span class="promo-link">See who's here &rarr;</span></a>
 
 <!-- ══════════════════════════════════════════════
@@ -1000,6 +998,7 @@
         <span></span><span></span><span></span>
     </button>
 </nav>
+</div>
 
 <!-- ══ MOBILE MENU ══════════════════════════════ -->
 <div class="mobile-menu" id="mobileMenu">
