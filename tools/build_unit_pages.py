@@ -359,6 +359,23 @@ footer{background:#18160F;padding:34px 52px;display:flex;justify-content:space-b
 .lb-arrow:hover{color:rgba(246,241,233,.9)}
 .lb-prev{left:0}.lb-next{right:0}
 
+        /* REQUEST INFORMATION (HubSpot form) */
+        .info-form { background: var(--cream-dark); padding: 96px 52px; }
+        .info-form-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; max-width: 1240px; margin: 0 auto; }
+        .info-form .eyebrow { color: var(--terracotta); }
+        .info-form .section-title { color: var(--dark); }
+        .info-form-body { font-size: 19px; font-weight: 300; line-height: 1.75; color: var(--dark-mid); }
+        .info-form-alt { margin-top: 26px; font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(58,53,48,0.75); }
+        .info-form-alt a { color: var(--terracotta); text-underline-offset: 3px; }
+        .info-form-card { background: #fff; padding: 0; border-top: 3px solid var(--terracotta); box-shadow: 0 1px 0 rgba(58,53,48,0.06); min-height: 220px; overflow: hidden; }
+        .info-form-copy { position: sticky; top: 160px; }
+        @media (max-width: 960px) {
+            .info-form { padding: 64px 24px; }
+            .info-form-grid { grid-template-columns: 1fr; gap: 36px; }
+            .info-form-body { font-size: 17px; }
+            .info-form-copy { position: static; }
+        }
+
 /* RESPONSIVE */
 @media (max-width:960px){
   :root{--nav-h:64px}
@@ -476,6 +493,8 @@ def build(key):
             f'<div class="o-body"><div class="o-label">{"Units 218 + 220" if k == "218-220" else "Unit " + k} &middot; East Cota Street</div>'
             f'<div class="o-sf">{SF_LINE[k]}</div><div class="o-blurb">{esc(o["blurb"])}</div><span class="o-link">View {"combined space" if k == "218-220" else "Unit " + k} &rarr;</span></div></a>'
         )
+
+    form_title = "Interested in %s?" % ("Units 218 and 220" if key == "218-220" else "Unit " + key)
 
     page = f"""<!DOCTYPE html>
 <html lang="en">
@@ -629,6 +648,23 @@ def build(key):
         <div class="contact-card"><div class="cc-lbl">Email</div><a href="mailto:{EMAIL}" class="cc-val">{EMAIL}</a></div>
         <div class="contact-card"><div class="cc-lbl">Address</div><span class="cc-val">East Cota Street<br>Between Garden Street and Santa Barbara Street</span></div>
         <a href="{mailto}" class="contact-cta">Request a Tour &rarr;</a>
+    </div>
+</section>
+
+<!-- ══ REQUEST INFORMATION (HubSpot form) ══ -->
+<section class="info-form" id="request-info">
+    <div class="info-form-grid">
+        <div class="info-form-copy">
+            <p class="eyebrow">Request Information</p>
+            <h2 class="section-title">{form_title}</h2>
+            <div class="rule"></div>
+            <p class="info-form-body">Tell us a little about what you're looking for and our management team will follow up with availability, lease details and tour times.</p>
+            <p class="info-form-alt">Prefer to talk? Call <a href="tel:+18056812878">(805) 681-2878</a> or email <a href="mailto:management@plazacommercialcenter.com">management@plazacommercialcenter.com</a>.</p>
+        </div>
+        <div class="info-form-card">
+            <script src="https://js-na2.hsforms.net/forms/embed/247525464.js" defer></script>
+            <div class="hs-form-frame" data-region="na2" data-form-id="5f4c8fb4-82ec-47ab-98fc-2749bed5d398" data-portal-id="247525464"></div>
+        </div>
     </div>
 </section>
 
