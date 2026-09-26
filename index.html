@@ -559,67 +559,6 @@
             color: rgba(58,53,48,0.65);
         }
 
-        /* ─── CONTACT ────────────────────────────── */
-        .contact-section {
-            background: var(--dark);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 88px;
-            align-items: center;
-            padding: 104px 52px;
-        }
-        .contact-section .eyebrow { color: var(--terracotta); }
-        .contact-section .section-title { color: var(--cream); }
-
-        .contact-body {
-            font-size: 22px;
-            font-weight: 300;
-            line-height: 1.75;
-            color: rgba(246,241,233,0.5);
-            margin-top: 8px;
-        }
-
-        .contact-cards { display: flex; flex-direction: column; gap: 3px; }
-
-        .contact-card {
-            background: var(--dark-mid);
-            padding: 26px 30px;
-        }
-        .cc-lbl {
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--sand);
-            margin-bottom: 10px;
-        }
-        .cc-val {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--cream);
-            text-decoration: none;
-            line-height: 1.4;
-            transition: color 0.2s;
-        }
-        a.cc-val:hover { color: var(--terracotta); }
-
-        .contact-cta {
-            display: block;
-            background: var(--terracotta);
-            color: #fff;
-            text-align: center;
-            padding: 20px 30px;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-top: 3px;
-            transition: background 0.2s;
-        }
-        .contact-cta:hover { background: #a0553a; }
-
         /* ─── FOOTER ─────────────────────────────── */
         footer {
             background: #18160F;
@@ -745,13 +684,10 @@
             .stat { flex: 1 1 33%; border-bottom: 1px solid rgba(255,255,255,0.12); }
 
             .section { padding: 72px 24px; }
-            .available-section,
-            .contact-section { padding: 72px 24px; }
+            .available-section { padding: 72px 24px; }
 
             .about-grid,
             .neighborhood-grid { grid-template-columns: 1fr; gap: 48px; }
-
-            .contact-section { grid-template-columns: 1fr; gap: 48px; }
 
             footer { flex-direction: column; gap: 12px; text-align: center; }
         }
@@ -789,11 +725,6 @@
             .nb-title { font-size: 16px; }
             .nb-desc { font-size: 14px; }
             .nb-card { padding: 18px 20px; }
-
-            .contact-body { font-size: 17px; }
-            .cc-val { font-size: 16px !important; word-break: break-word; overflow-wrap: break-word; }
-            .contact-card { padding: 22px 20px; }
-            .contact-section { overflow: hidden; }
 
             .eyebrow { font-size: 11px; }
         }
@@ -974,7 +905,7 @@
 
     
         /* ─── REQUEST INFORMATION (HubSpot form) ─── */
-        .info-form { background: var(--cream-dark); padding: 96px 52px; }
+        .info-form { background: var(--cream-dark); padding: 96px 52px; scroll-margin-top: 80px; }
         .info-form-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; max-width: 1240px; margin: 0 auto; }
         .info-form .eyebrow { color: var(--terracotta); }
         .info-form .section-title { color: var(--dark); }
@@ -1367,45 +1298,14 @@
 
 
 <!-- ══════════════════════════════════════════════
-     CONTACT
-══════════════════════════════════════════════ -->
-<section class="contact-section" id="contact">
-    <div>
-        <p class="eyebrow">Get in Touch</p>
-        <h2 class="section-title" style="color:var(--cream);">Schedule a Tour</h2>
-        <div class="rule"></div>
-        <p class="contact-body">Our management team is available to walk you through available units, discuss lease terms, and answer questions about Plaza Commercial Center. Tours available by appointment — reach out by email to get started.</p>
-    </div>
-
-    <div class="contact-cards">
-        <div class="contact-card">
-            <div class="cc-lbl">Phone</div>
-            <a href="tel:+18056812878" class="cc-val" style="font-size:22px;">(805) 681-2878</a>
-        </div>
-        <div class="contact-card">
-            <div class="cc-lbl">Email</div>
-            <a href="mailto:management@plazacommercialcenter.com" class="cc-val" style="font-size:22px;">management@plazacommercialcenter.com</a>
-        </div>
-        <div class="contact-card">
-            <div class="cc-lbl">Address</div>
-            <span class="cc-val">East Cota Street<br>Between Garden Street and Santa Barbara Street</span>
-        </div>
-        <a href="mailto:management@plazacommercialcenter.com?subject=Tour Request — Plaza Commercial Center" class="contact-cta">
-            Request a Tour &rarr;
-        </a>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════ -->
-<!-- ══ REQUEST INFORMATION (HubSpot form) ══ -->
-<section class="info-form" id="request-info">
+<!-- ══ GET IN TOUCH: SCHEDULE A TOUR (HubSpot form) ══ -->
+<section class="info-form" id="contact">
     <div class="info-form-grid">
         <div class="info-form-copy">
-            <p class="eyebrow">Request Information</p>
-            <h2 class="section-title">Learn more about the Plaza</h2>
+            <p class="eyebrow">Get in Touch</p>
+            <h2 class="section-title">Schedule a tour</h2>
             <div class="rule"></div>
             <p class="info-form-body">Tell us a little about what you're looking for and our management team will follow up with availability, lease details and tour times.</p>
             <p class="info-form-alt">Prefer to talk? Call <a href="tel:+18056812878">(805) 681-2878</a> or email <a href="mailto:management@plazacommercialcenter.com">management@plazacommercialcenter.com</a>.</p>
