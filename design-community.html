@@ -290,13 +290,6 @@
         .avail-link:hover { background: var(--terracotta); color: #fff; }
 
         /* ─── FINAL CTA ──────────────────────────── */
-        .final-cta { padding: 96px 52px; text-align: center; }
-        .final-cta .section-title { margin: 0 auto 18px; }
-        .final-cta .lede { margin: 0 auto 36px; }
-        .final-cta .hero-actions { justify-content: center; }
-        .final-cta .btn-primary, .final-cta .btn-ghost { color: unset; }
-        .final-cta .btn-ghost { border-color: rgba(37,34,32,0.25); color: var(--dark); }
-        .final-cta .btn-ghost:hover { border-color: var(--dark); background: var(--dark); color: var(--cream); }
 
         /* ─── FOOTER ─────────────────────────────── */
         footer {
@@ -322,7 +315,7 @@
                 backdrop-filter: blur(2px);
                 -webkit-backdrop-filter: blur(2px);
             }
-            .section, .units-teaser, .final-cta, .palette { padding: 64px 24px; }
+            .section, .units-teaser, .palette { padding: 64px 24px; }
             .arch-motif { display: none; }
             .palette-grid { grid-template-columns: 1fr; gap: 48px; }
             .palette-boards { min-height: auto; display: flex; flex-direction: column; gap: 20px; }
@@ -336,7 +329,7 @@
         }
     
         /* ─── REQUEST INFORMATION (HubSpot form) ─── */
-        .info-form { background: var(--cream-dark); padding: 96px 52px; }
+        .info-form { background: var(--cream-dark); padding: 96px 52px; scroll-margin-top: 40px; }
         .info-form-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; max-width: 1240px; margin: 0 auto; }
         .info-form .eyebrow { color: var(--terracotta); }
         .info-form .section-title { color: var(--dark); }
@@ -365,7 +358,7 @@
         <li><a href="index.html#units">All Units</a></li>
         <li><a href="index.html#neighborhood">Neighborhood</a></li>
         <li><a href="design-community.html" class="current">Design Community</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
         <span></span><span></span><span></span>
@@ -378,7 +371,7 @@
     <a href="index.html#units" onclick="document.getElementById('mobileMenu').classList.remove('open')">All Units</a>
     <a href="index.html#neighborhood" onclick="document.getElementById('mobileMenu').classList.remove('open')">Neighborhood</a>
     <a href="design-community.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Design Community</a>
-    <a href="index.html#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+    <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
     <a href="mailto:management@plazacommercialcenter.com?subject=Tour Request" class="mobile-menu-cta">Schedule a Tour</a>
 </div>
 
@@ -654,28 +647,14 @@
 </section>
 
 <!-- ══════════════════════════════════════════════
-     FINAL CTA
-══════════════════════════════════════════════ -->
-<section class="final-cta">
-    <p class="eyebrow">Let's See If It's a Fit</p>
-    <h2 class="section-title">Come walk the space.</h2>
-    <div class="rule" style="margin-left:auto;margin-right:auto;"></div>
-    <p class="lede">Talk through how your studio, showroom, or office could take shape here — tours are by appointment.</p>
-    <div class="hero-actions">
-        <a href="mailto:management@plazacommercialcenter.com?subject=Design Community Inquiry" class="btn-primary">Schedule a Tour</a>
-        <a href="tel:+18056812878" class="btn-ghost">(805) 681-2878</a>
-    </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════ -->
-<!-- ══ REQUEST INFORMATION (HubSpot form) ══ -->
-<section class="info-form" id="request-info">
+<!-- ══ GET IN TOUCH: SCHEDULE A TOUR (HubSpot form) ══ -->
+<section class="info-form" id="contact">
     <div class="info-form-grid">
         <div class="info-form-copy">
-            <p class="eyebrow">Request Information</p>
-            <h2 class="section-title">Learn more about the Plaza</h2>
+            <p class="eyebrow">Get in Touch</p>
+            <h2 class="section-title">Schedule a tour</h2>
             <div class="rule"></div>
             <p class="info-form-body">Tell us a little about what you're looking for and our management team will follow up with availability, lease details and tour times.</p>
             <p class="info-form-alt">Prefer to talk? Call <a href="tel:+18056812878">(805) 681-2878</a> or email <a href="mailto:management@plazacommercialcenter.com">management@plazacommercialcenter.com</a>.</p>
