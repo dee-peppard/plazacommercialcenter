@@ -645,6 +645,9 @@ def build(key):
 </div>
 
 <script>{JS}</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/247525464.js"></script>
+<!-- End of HubSpot Embed Code -->
 </body>
 </html>
 """
