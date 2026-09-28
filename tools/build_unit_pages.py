@@ -458,6 +458,7 @@ def gallery_items(entries, start):
 def build(key):
     p = PAGES[key]
     url = f"{SITE}/{p['slug']}/"
+    crumb = "Units 218 & 220" if key == "218-220" else "Unit " + key
     mailto = f"mailto:{EMAIL}?subject={p['subject'].replace(' ', '%20').replace('&', '%26')}"
     og_img = SITE + p.get("og", p["hero"])
 
@@ -476,7 +477,7 @@ def build(key):
         o = PAGES[k]
         thumb_tag = '<span class="ai-tag">%s</span>' % o["thumb_tag"] if o.get("thumb_tag") else ""
         others += (
-            f'<a class="o-card" href="/{o["slug"]}/"><div class="o-img"><img src="{o["thumb"]}" alt="" loading="lazy" decoding="async">{thumb_tag}</div>'
+            f'<a class="o-card" href="/{o["slug"]}/"><div class="o-img"><img src="{o["thumb"]}" alt="{esc(LABEL[k] + (" — concept rendering" if o.get("thumb_tag") else " — interior view"))}" loading="lazy" decoding="async">{thumb_tag}</div>'
             f'<div class="o-body"><div class="o-label">{"Units 218 + 220" if k == "218-220" else "Unit " + k} &middot; East Cota Street</div>'
             f'<div class="o-sf">{SF_LINE[k]}</div><div class="o-blurb">{esc(o["blurb"])}</div><span class="o-link">View {"combined space" if k == "218-220" else "Unit " + k} &rarr;</span></div></a>'
         )
@@ -496,6 +497,16 @@ def build(key):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{og_img}">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {{"@type": "ListItem", "position": 1, "name": "Home", "item": "{SITE}/"}},
+        {{"@type": "ListItem", "position": 2, "name": "{crumb}", "item": "{url}"}}
+    ]
+}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>{CSS}</style>
