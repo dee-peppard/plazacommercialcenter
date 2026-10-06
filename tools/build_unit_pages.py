@@ -130,6 +130,7 @@ PAGES = {
         renders=[
             ("220/220-Rendering.jpeg", "Architecture studio concept", "Concept rendering of Unit 220 as an architecture studio with drafting tables and models"),
             ("220/220-Rendering-Gallery.jpeg", "Gallery & showroom concept", "Concept rendering of Unit 220 as a gallery and showroom with exhibition walls"),
+            ("220/220-Rendering-Warehouse.jpeg", "Warehouse & storage concept", "Concept rendering of Unit 220 as a warehouse with pallet racking, a forklift and exposed wood beam ceilings"),
         ],
         plan="shared/218-220-floorplan.png", plan_alt="Floor plan showing Unit 220 (2,853 SF) below Unit 218 (1,894 SF) as 4,747 SF of contiguous space",
         plan_title="Unit 220 Floor Plan",
