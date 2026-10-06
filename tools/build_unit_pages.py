@@ -17,7 +17,6 @@ PAGES = {
     "210": dict(
         slug="210ecota", nav="Unit 210", h1_num="210", sf="2,300", sf_note="Square Feet",
         ceiling="14′", avail="Available Now", avail_short="Available Now",
-        subject="Leasing Inquiry: Unit 210",
         title="210 East Cota Street — 2,300 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 210 at Plaza Commercial Center: 2,300 SF of flex office/showroom space in Santa Barbara's Lagoon District with 14-ft ceilings, arched brick entrance, reception, conference room and private parking. NNN lease.",
         tagline="A 2,300 SF single-story suite behind one of the Plaza's signature arched brick entrances — with 14-foot ceilings, exposed wood beams and signage visible from East Cota Street.",
@@ -61,7 +60,6 @@ PAGES = {
     "218": dict(
         slug="218ecota", nav="Unit 218", h1_num="218", sf="1,894", sf_note="Square Feet",
         ceiling="14′+", avail="Available October 1st", avail_short="Available October 1st",
-        subject="Leasing Inquiry: Unit 218",
         title="218 East Cota Street — 1,894 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 218 at Plaza Commercial Center: 1,894 SF of flex space in Santa Barbara's Lagoon District with 14-ft+ exposed wood beam ceilings, a 10-ft roll-up door and concrete floors. Available October 1st. NNN lease.",
         tagline="A 1,894 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a brick wall and a large 10′ roll-up door — available October 1st.",
@@ -101,7 +99,6 @@ PAGES = {
     "220": dict(
         slug="220ecota", nav="Unit 220", h1_num="220", sf="2,853", sf_note="Square Feet",
         ceiling="14′+", avail="Available 30-60 Days Notice", avail_short="Available 30-60 Days Notice",
-        subject="Leasing Inquiry: Unit 220",
         title="220 East Cota Street — 2,853 SF Commercial Space for Lease | Plaza Commercial Center",
         desc="Unit 220 at Plaza Commercial Center: 2,853 SF of flex space in Santa Barbara's Lagoon District with 14-ft+ exposed wood beam ceilings, a 10-ft roll-up door and its own street entrance. NNN lease.",
         tagline="A 2,853 SF single-story suite with 14-foot-plus exposed wood beam ceilings, a large 10′ roll-up door and its own street entrance.",
@@ -144,7 +141,6 @@ PAGES = {
     "218-220": dict(
         slug="218-220ecota", nav="218 + 220 Combined", h1_num="218–220", sf="4,747", sf_note="Contiguous SF",
         ceiling="14′+", avail="218: Oct 1st · 220: 30-60 Days Notice", avail_short="218: October 1st · 220: 30-60 Days Notice",
-        subject="Leasing Inquiry: Units 218 & 220",
         title="218–220 East Cota Street — 4,747 SF Contiguous Commercial Space | Plaza Commercial Center",
         desc="Units 218 and 220 at Plaza Commercial Center combine for 4,747 SF of contiguous flex space in Santa Barbara's Lagoon District — 14-ft+ exposed wood beam ceilings, two 10-ft roll-up doors, private parking. NNN lease.",
         tagline="4,747 SF of space — 14-foot-plus exposed wood beam ceilings, two 10′ roll-up doors and room to build out a full studio, showroom or headquarters.",
@@ -459,7 +455,6 @@ def build(key):
     p = PAGES[key]
     url = f"{SITE}/{p['slug']}/"
     crumb = "Units 218 & 220" if key == "218-220" else "Unit " + key
-    mailto = f"mailto:{EMAIL}?subject={p['subject'].replace(' ', '%20').replace('&', '%26')}"
     og_img = SITE + p.get("og", p["hero"])
 
     cur = ' aria-current="page"'
@@ -586,7 +581,7 @@ def build(key):
             <div class="lease-note">
                 <h3>Lease Terms</h3>
                 <p><strong>Triple net (NNN) lease.</strong> NNN charges cover the property's operating costs, including taxes, insurance and common-area maintenance. Utilities, gas and cable are not included and are billed separately.</p>
-                <p>Lease rate available upon request &mdash; <a href="{mailto}">ask us</a>.</p>
+                <p>Lease rate available upon request &mdash; <a href="#contact">ask us</a>.</p>
             </div>
         </div>
     </div>
