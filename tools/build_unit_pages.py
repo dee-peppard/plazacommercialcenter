@@ -544,7 +544,7 @@ def build(key):
     <a href="/#available">Available Units</a>
     <a href="/design-community.html">Design Community</a>
     <a href="#contact" data-menu-close>Contact</a>
-    <a href="{mailto}" class="mobile-menu-cta">Schedule a Tour</a>
+    <a href="#contact" data-menu-close class="mobile-menu-cta">Schedule a Tour</a>
 </div>
 
 <!-- HERO -->
@@ -556,7 +556,7 @@ def build(key):
         <div class="hero-badge">{esc(p['avail_short'])}</div>
         <p class="hero-tagline">{esc(p['tagline'])}</p>
         <div class="hero-actions">
-            <a href="{mailto}" class="btn-primary">Schedule a Tour</a>
+            <a href="#contact" class="btn-primary">Schedule a Tour</a>
             <a href="#photos" class="btn-ghost">See Photos</a>
             <a href="#floorplan" class="btn-ghost">Floor Plan</a>
         </div>
